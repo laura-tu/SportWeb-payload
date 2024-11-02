@@ -27,6 +27,8 @@ import { Settings } from './globals/Settings'
 import CSport from './collections/C_Sport'
 import CSportClub from './collections/C_SportClub'
 
+import UAthlete from './collections/UAthlete'
+
 const generateTitle: GenerateTitle = () => {
   return 'My Website'
 }
@@ -67,7 +69,7 @@ export default buildConfig({
     url: process.env.DATABASE_URI,
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Pages, Posts, Projects, Media, Categories, Users, Comments, CSport, CSportClub],
+  collections: [Pages, Posts, Projects, Media, Categories, Users, Comments, CSport, CSportClub,UAthlete],
   globals: [Settings, Header, Footer],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

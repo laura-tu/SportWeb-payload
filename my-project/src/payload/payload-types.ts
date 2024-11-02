@@ -17,6 +17,7 @@ export interface Config {
     comments: Comment;
     c_sport: CSport;
     c_sport_club: CSportClub;
+    u_athlete: UAthlete;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -658,6 +659,20 @@ export interface CSportClub {
   name: string;
   short_name?: string | null;
   sport: string | CSport;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "u_athlete".
+ */
+export interface UAthlete {
+  id: string;
+  user: string | User;
+  birth_date: string;
+  gender?: ('muz' | 'zena') | null;
+  sport?: (string | null) | CSport;
+  club?: (string | null) | CSportClub;
   updatedAt: string;
   createdAt: string;
 }
