@@ -28,6 +28,7 @@ import CSport from './collections/C_Sport'
 import CSportClub from './collections/C_SportClub'
 
 import UAthlete from './collections/UAthlete'
+import UCoach from './collections/UCoach'
 
 const generateTitle: GenerateTitle = () => {
   return 'My Website'
@@ -69,7 +70,19 @@ export default buildConfig({
     url: process.env.DATABASE_URI,
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Pages, Posts, Projects, Media, Categories, Users, Comments, CSport, CSportClub,UAthlete],
+  collections: [
+    Pages,
+    Posts,
+    Projects,
+    Media,
+    Categories,
+    Users,
+    Comments,
+    CSport,
+    CSportClub,
+    UAthlete,
+    UCoach,
+  ],
   globals: [Settings, Header, Footer],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
@@ -102,4 +115,7 @@ export default buildConfig({
     }),
     payloadCloud(),
   ],
+  rateLimit: {
+    trustProxy: true,
+  },
 })

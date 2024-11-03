@@ -9,6 +9,10 @@ import { loginAfterCreate } from './hooks/loginAfterCreate'
 
 const Users: CollectionConfig = {
   slug: 'users',
+  labels: {
+    singular: 'Používateľ',
+    plural: 'Používatelia',
+  },
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'email'],
@@ -28,6 +32,7 @@ const Users: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+      label:'Meno',
     },
     {
       name: 'roles',
@@ -44,8 +49,8 @@ const Users: CollectionConfig = {
           value: 'user',
         },
         {
-          label: 'sportCoach', 
-          value: 'sportCoach', 
+          label: 'sportCoach',
+          value: 'sportCoach',
         },
       ],
       hooks: {

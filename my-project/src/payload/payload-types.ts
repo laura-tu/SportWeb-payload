@@ -18,6 +18,7 @@ export interface Config {
     c_sport: CSport;
     c_sport_club: CSportClub;
     u_athlete: UAthlete;
+    u_coach: UCoach;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -668,11 +669,24 @@ export interface CSportClub {
  */
 export interface UAthlete {
   id: string;
-  user: string | User;
+  user?: (string | null) | User;
   birth_date: string;
   gender?: ('muz' | 'zena') | null;
-  sport?: (string | null) | CSport;
+  sport: (string | CSport)[];
   club?: (string | null) | CSportClub;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "u_coach".
+ */
+export interface UCoach {
+  id: string;
+  user?: (string | null) | User;
+  sport: (string | CSport)[];
+  club?: (string | null) | CSportClub;
+  athlete?: (string | UAthlete)[] | null;
   updatedAt: string;
   createdAt: string;
 }

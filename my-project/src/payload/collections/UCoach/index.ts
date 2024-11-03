@@ -3,11 +3,11 @@ import { admins } from '../../access/admins'
 import { checkRole } from '../Users/checkRole'
 import { anyone } from '../../access/anyone'
 
-const UAthlete: CollectionConfig = {
-  slug: 'u_athlete',
+const UCoach: CollectionConfig = {
+  slug: 'u_coach',
   labels: {
-    singular: 'Športovec',
-    plural: 'Športovci',
+    singular: 'Tréner',
+    plural: 'Tréneri',
   },
   admin: {
     useAsTitle: 'user',
@@ -26,8 +26,6 @@ const UAthlete: CollectionConfig = {
       label: 'Užívateľ',
       type: 'relationship',
       relationTo: 'users',
-      //required: true,
-      //validate: () => true,
       admin: {
         position: 'sidebar',
         readOnly: true,
@@ -46,21 +44,6 @@ const UAthlete: CollectionConfig = {
       },
     },
     {
-      name: 'birth_date',
-      label: 'Dátum narodenia',
-      type: 'date',
-      required: true,
-    },
-    {
-      name: 'gender',
-      label: 'Pohlavie',
-      type: 'select',
-      options: [
-        { label: 'Muž', value: 'muz' },
-        { label: 'Žena', value: 'zena' },
-      ],
-    },
-    {
       name: 'sport',
       label: 'Šport',
       type: 'relationship',
@@ -74,7 +57,14 @@ const UAthlete: CollectionConfig = {
       type: 'relationship',
       relationTo: 'c_sport_club',
     },
+    {
+      name: 'athlete',
+      label: 'Športovci vedený trénerom',
+      type: 'relationship',
+      relationTo: 'u_athlete',
+      hasMany: true,
+    },
   ],
 }
 
-export default UAthlete
+export default UCoach
