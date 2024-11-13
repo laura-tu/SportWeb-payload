@@ -32,7 +32,7 @@ const Users: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
-      label:'Meno',
+      label: 'Meno',
     },
     {
       name: 'roles',
@@ -57,9 +57,9 @@ const Users: CollectionConfig = {
         beforeChange: [ensureFirstUserIsAdmin],
       },
       access: {
-        read: admins,
-        create: admins,
-        update: admins,
+        read: ({ req: { user } }) => user?.roles?.includes('admin') || false, // Only admins can read this field
+        create: () => true, // Allow anyone to set a role during registration
+        update: ({ req: { user } }) => user?.roles?.includes('admin') || false, // Only admins can update this field
       },
     },
   ],
