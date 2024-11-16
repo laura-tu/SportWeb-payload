@@ -57,7 +57,7 @@ const Users: CollectionConfig = {
         beforeChange: [ensureFirstUserIsAdmin],
       },
       access: {
-        read: ({ req: { user } }) => user?.roles?.includes('admin') || false, // Only admins can read this field
+        read: () => true, // anyone can read a user's roles
         create: () => true, // Allow anyone to set a role during registration
         update: ({ req: { user } }) => user?.roles?.includes('admin') || false, // Only admins can update this field
       },
