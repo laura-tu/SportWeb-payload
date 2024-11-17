@@ -16,7 +16,7 @@ const UAthlete: CollectionConfig = {
   access: {
     read: anyone,
     create: anyone,
-    update: admins,
+    update: ({ req: { user } }) => checkRole(['user'], user),
     delete: admins,
     admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
