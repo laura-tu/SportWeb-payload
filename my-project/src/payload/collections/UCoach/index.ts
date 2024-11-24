@@ -16,7 +16,8 @@ const UCoach: CollectionConfig = {
   access: {
     read: anyone,
     create: anyone,
-    update: ({ req: { user } }) => checkRole(['sportCoach'], user),
+    //update: ({ req: { user } }) => checkRole(['sportCoach'], user),
+    update:anyone,
     delete: admins,
     admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
