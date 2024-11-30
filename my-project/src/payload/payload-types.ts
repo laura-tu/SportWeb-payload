@@ -670,6 +670,7 @@ export interface CSportClub {
 export interface UAthlete {
   id: string;
   user?: (string | null) | User;
+  name?: string | null;
   birth_date: string;
   gender?: ('muz' | 'zena') | null;
   sport: (string | CSport)[];
@@ -684,6 +685,7 @@ export interface UAthlete {
 export interface UCoach {
   id: string;
   user?: (string | null) | User;
+  name?: string | null;
   sport: (string | CSport)[];
   club?: (string | null) | CSportClub;
   athlete?: (string | UAthlete)[] | null;

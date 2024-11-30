@@ -17,7 +17,7 @@ const UCoach: CollectionConfig = {
     read: anyone,
     create: anyone,
     //update: ({ req: { user } }) => checkRole(['sportCoach'], user),
-    update:anyone,
+    update: anyone,
     delete: admins,
     admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
@@ -39,6 +39,34 @@ const UCoach: CollectionConfig = {
                 // undefined when seeding
                 return req.user.id
               }
+            }
+          },
+        ],
+      },
+    },
+    {
+      name: 'name',
+      label: 'Meno',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+        readOnly: true, // Make it read-only if it should be auto-filled
+      },
+      hooks: {
+        beforeChange: [
+          async ({ data, req, operation }) => {
+            if (operation === 'create' || operation === 'update') {
+              if (data.user) {
+                const userId = data.user // ID of the related user
+                const user = await req.payload.findByID({
+                  collection: 'users',
+                  id: userId,
+                })
+                if (user?.name) {
+                  return user.name
+                }
+              }
+              return ''
             }
           },
         ],
