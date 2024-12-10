@@ -11,6 +11,7 @@ const CSport: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
+    group:'Číselníky',
   },
   access: {
     read: anyone,

@@ -2,20 +2,12 @@ import fs from 'fs'
 import path from 'path'
 import type { Payload } from 'payload'
 
-import { home } from './home'
 import { image1 } from './image-1'
 import { image2 } from './image-2'
 import { post1 } from './post-1'
 import { post2 } from './post-2'
 import { post3 } from './post-3'
-import { postsPage } from './posts-page'
-import { project1 } from './project-1'
-import { project2 } from './project-2'
-import { project3 } from './project-3'
-import { projectsPage } from './projects-page'
-
-const collections = ['categories', 'media', 'pages', 'posts', 'projects', 'comments']
-const globals = ['header', 'settings', 'footer']
+const collections = ['categories', 'media', 'posts']
 
 // Next.js revalidation errors are normal when seeding the database without a server running
 // i.e. running `yarn seed` locally instead of using the admin UI within an active app
@@ -201,186 +193,33 @@ export const seed = async (payload: Payload): Promise<void> => {
 
   // update each post with related posts
 
-  try {await Promise.all([
-    await payload.update({
-      collection: 'posts',
-      id: String(post1Doc.id),
-      data: {
-        relatedPosts: [String(post2Doc.id), String(post3Doc.id)],
-      },
-    }),
-    payload.update({
-      collection: 'posts',
-      id: String(post2Doc.id),
-      data: {
-        relatedPosts: [String(post1Doc.id), String(post3Doc.id)],
-      },
-    }),
-    payload.update({
-      collection: 'posts',
-      id: String(post3Doc.id),
-      data: {
-        relatedPosts: [String(post1Doc.id), String(post2Doc.id)],
-      },
-    }),
-  ])
-} catch (error) {
-  payload.logger.error(`Error creating/updating posts: ${error.message}`);
-}
-
-  payload.logger.info(`* Seeding comments...`)
-
-  await Promise.all(
-    posts.map(
-      async (post, index) =>
-        await payload.create({
-          collection: 'comments',
-          data: {
-            _status: 'published',
-            comment: `This is a comment on post ${
-              index + 1
-            }. It has been approved by an admin and is now visible to the public. You can leave your own comment on this post using the form below.`,
-            user: demoUserID,
-            doc: String(post.id),
-          },
-        }),
-    ),
-  )
-
-  payload.logger.info(`* Seeding projects...`)
-
-  // Do not create posts with `Promise.all` because we want the posts to be created in order
-  // This way we can sort them by `createdAt` or `publishedAt` and they will be in the expected order
-  const project1Doc = await payload.create({
-    collection: 'projects',
-    data: JSON.parse(
-      JSON.stringify({ ...project1, categories: [designCat.id] }).replace(
-        /"\{\{IMAGE\}\}"/g,
-        image2ID,
-      ),
-    ),
-  })
-
-  const project2Doc = await payload.create({
-    collection: 'projects',
-    data: JSON.parse(
-      JSON.stringify({ ...project2, categories: [softwareCat.id] }).replace(
-        /"\{\{IMAGE\}\}"/g,
-        image2ID,
-      ),
-    ),
-  })
-
-  const project3Doc = await payload.create({
-    collection: 'projects',
-    data: JSON.parse(
-      JSON.stringify({ ...project3, categories: [engineeringCat.id] }).replace(
-        /"\{\{IMAGE\}\}"/g,
-        image2ID,
-      ),
-    ),
-  })
-
-  // update each project with related projects
-
-  await Promise.all([
-    await payload.update({
-      collection: 'projects',
-      id: project1Doc.id,
-      data: {
-        relatedProjects: [String(project2Doc.id), String(project3Doc.id)],
-      },
-    }),
-    await payload.update({
-      collection: 'projects',
-      id: project2Doc.id,
-      data: {
-        relatedProjects: [String(project1Doc.id), String(project3Doc.id)],
-      },
-    }),
-    await payload.update({
-      collection: 'projects',
-      id: project3Doc.id,
-      data: {
-        relatedProjects: [String(project1Doc.id), String(project2Doc.id)],
-      },
-    }),
-  ])
-
-  payload.logger.info(`* Seeding posts page...`)
-
-  const postsPageDoc = await payload.create({
-    collection: 'pages',
-    data: JSON.parse(JSON.stringify(postsPage).replace(/"\{\{IMAGE\}\}"/g, image1ID)),
-  })
-
-  payload.logger.info(`* Seeding projects page...`)
-
-  const projectsPageDoc = await payload.create({
-    collection: 'pages',
-    data: JSON.parse(JSON.stringify(projectsPage).replace(/"\{\{IMAGE\}\}"/g, image1ID)),
-  })
-
-  let postsPageID: string | number = postsPageDoc.id
-  let projectsPageID: string | number = projectsPageDoc.id
-
-  if (payload.db.defaultIDType === 'text') {
-    postsPageID = `"${postsPageID}"`
-    projectsPageID = `"${projectsPageID}"`
+  try {
+    await Promise.all([
+      await payload.update({
+        collection: 'posts',
+        id: String(post1Doc.id),
+        data: {
+          relatedPosts: [String(post2Doc.id), String(post3Doc.id)],
+        },
+      }),
+      payload.update({
+        collection: 'posts',
+        id: String(post2Doc.id),
+        data: {
+          relatedPosts: [String(post1Doc.id), String(post3Doc.id)],
+        },
+      }),
+      payload.update({
+        collection: 'posts',
+        id: String(post3Doc.id),
+        data: {
+          relatedPosts: [String(post1Doc.id), String(post2Doc.id)],
+        },
+      }),
+    ])
+  } catch (error) {
+    payload.logger.error(`Error creating/updating posts: ${error.message}`)
   }
-
-  payload.logger.info(`* Seeding home page...`)
-
-  await payload.create({
-    collection: 'pages',
-    data: JSON.parse(
-      JSON.stringify(home)
-        .replace(/"\{\{IMAGE_1\}\}"/g, String(image1ID))
-        .replace(/"\{\{IMAGE_2\}\}"/g, String(image2ID))
-        .replace(/"\{\{POSTS_PAGE_ID\}\}"/g, String(postsPageID))
-        .replace(/"\{\{PROJECTS_PAGE_ID\}\}"/g, String(projectsPageID)),
-    ),
-  })
-
-  payload.logger.info(`— Seeding settings...`)
-
-  await payload.updateGlobal({
-    slug: 'settings',
-    data: {
-      postsPage: String(postsPageDoc.id),
-      projectsPage: String(projectsPageDoc.id),
-    },
-  })
-
-  payload.logger.info(`* Seeding header...`)
-
-  await payload.updateGlobal({
-    slug: 'header',
-    data: {
-      navItems: [
-        {
-          link: {
-            type: 'reference',
-            reference: {
-              relationTo: 'pages',
-              value: String(postsPageDoc.id),
-            },
-            label: 'Posts',
-          },
-        },
-        {
-          link: {
-            type: 'reference',
-            reference: {
-              relationTo: 'pages',
-              value: String(projectsPageDoc.id),
-            },
-            label: 'Projects',
-          },
-        },
-      ],
-    },
-  })
 
   payload.logger.info('Seeded database successfully!')
 }

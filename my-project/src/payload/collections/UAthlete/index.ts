@@ -12,6 +12,7 @@ const UAthlete: CollectionConfig = {
   admin: {
     useAsTitle: 'user',
     defaultColumns: ['user', 'sport', 'club'],
+    group:'Ľudia',
   },
   access: {
     read: anyone,

@@ -16,6 +16,7 @@ const Users: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'email'],
+    group:'Ľudia',
   },
   access: {
     read: adminsAndUser,
@@ -24,9 +25,7 @@ const Users: CollectionConfig = {
     delete: admins,
     admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
-  hooks: {
-    afterChange: [loginAfterCreate],
-  },
+  
   auth: true,
   fields: [
     {

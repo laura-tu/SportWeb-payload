@@ -12,6 +12,7 @@ const UCoach: CollectionConfig = {
   admin: {
     useAsTitle: 'user',
     defaultColumns: ['user', 'sport', 'club'],
+    group: 'Ľudia',
   },
   access: {
     read: anyone,
@@ -21,6 +22,26 @@ const UCoach: CollectionConfig = {
     delete: admins,
     admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
+  hooks: {
+    beforeChange: [
+      async ({ data, req, operation }) => {
+        console.log('Before Change:', data)
+        console.log('Operation:', operation)
+        if (operation === 'create' || operation === 'update') {
+          if (data.user) {
+            const user = await req.payload.findByID({
+              collection: 'users',
+              id: data.user, // Linked user ID
+            })
+
+            if (user?.name) {
+              data.name = user.name // Set the coach's name based on the user's name
+            }
+          }
+        }
+      },
+    ],
+  },
   fields: [
     {
       name: 'user',
@@ -29,7 +50,7 @@ const UCoach: CollectionConfig = {
       relationTo: 'users',
       admin: {
         position: 'sidebar',
-        readOnly: true,
+        /* readOnly: true,*/
       },
       hooks: {
         beforeValidate: [
@@ -50,7 +71,7 @@ const UCoach: CollectionConfig = {
       type: 'text',
       admin: {
         position: 'sidebar',
-        readOnly: true, // Make it read-only if it should be auto-filled
+        // readOnly: true, // Make it read-only if it should be auto-filled
       },
       hooks: {
         beforeChange: [
