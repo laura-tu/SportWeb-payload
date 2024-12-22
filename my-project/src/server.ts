@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 import path from 'path'
+import { getEmailOptions } from './payload/utilities/sendPasswordEmail'
 
 // This file is used to replace `server.ts` when ejecting i.e. `yarn eject`
 // See `../eject.ts` for exact details on how this file is used
@@ -29,6 +30,7 @@ const start = async (): Promise<void> => {
     onInit: () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)
     },
+    email: getEmailOptions(),
   })
 
   if (process.env.PAYLOAD_SEED === 'true') {
