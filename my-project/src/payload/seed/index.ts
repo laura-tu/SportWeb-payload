@@ -7,7 +7,6 @@ import { image2 } from './image-2'
 import { post1 } from './post-1'
 import { post2 } from './post-2'
 import { post3 } from './post-3'
-const collections = ['categories', 'media', 'posts']
 
 // Next.js revalidation errors are normal when seeding the database without a server running
 // i.e. running `yarn seed` locally instead of using the admin UI within an active app
@@ -27,24 +26,6 @@ export const seed = async (payload: Payload): Promise<void> => {
   if (fs.existsSync(mediaDir)) {
     fs.rmdirSync(mediaDir, { recursive: true })
   }
-
-  /*payload.logger.info(`*Clearing collections and globals...`)
-
-  // clear the database
-  await Promise.all([
-    ...collections.map(async collection =>
-      payload.delete({
-        collection: collection as 'media',
-        where: {},
-      }),
-    ), // eslint-disable-line function-paren-newline
-    ...globals.map(async global =>
-      payload.updateGlobal({
-        slug: global as 'header',
-        data: {},
-      }),
-    ), // eslint-disable-line function-paren-newline
-  ])*/
 
   payload.logger.info(`*Seeding demo author and user...`)
 
@@ -103,14 +84,7 @@ export const seed = async (payload: Payload): Promise<void> => {
 
   payload.logger.info(`*Seeding categories...`)
 
-  const [
-    technologyCategory,
-    newsCategory,
-    financeCategory,
-    designCat,
-    softwareCat,
-    engineeringCat,
-  ] = await Promise.all([
+  const [technologyCategory, newsCategory, financeCategory] = await Promise.all([
     await payload.create({
       collection: 'categories',
       data: {

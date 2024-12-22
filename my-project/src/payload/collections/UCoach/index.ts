@@ -22,26 +22,6 @@ const UCoach: CollectionConfig = {
     delete: admins,
     admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
-  hooks: {
-    beforeChange: [
-      async ({ data, req, operation }) => {
-        console.log('Before Change:', data)
-        console.log('Operation:', operation)
-        if (operation === 'create' || operation === 'update') {
-          if (data.user) {
-            const user = await req.payload.findByID({
-              collection: 'users',
-              id: data.user, // Linked user ID
-            })
-
-            if (user?.name) {
-              data.name = user.name // Set the coach's name based on the user's name
-            }
-          }
-        }
-      },
-    ],
-  },
   fields: [
     {
       name: 'user',
