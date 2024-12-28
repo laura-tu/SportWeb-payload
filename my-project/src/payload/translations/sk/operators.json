@@ -1,0 +1,14 @@
+{
+    "contains": "obsahuje",
+    "equals": "rovná sa",
+    "exists": "existuje",
+    "isGreaterThan": "je väčší ako",
+    "isGreaterThanOrEqualTo": "je väčší alebo rovný",
+    "isIn": "je v",
+    "isLessThan": "je menší ako",
+    "isLessThanOrEqualTo": "je menší alebo rovný",
+    "isLike": "je ako",
+    "isNotEqualTo": "nie je rovný",
+    "isNotIn": "nie je v",
+    "near": "blízko"
+}

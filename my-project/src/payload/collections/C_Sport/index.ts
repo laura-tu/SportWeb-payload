@@ -2,16 +2,19 @@ import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
 import { checkRole } from '../Users/checkRole'
 import { anyone } from '../../access/anyone'
+import { tCollection } from '../../utils/translations'
+
+const translate = tCollection('c_sport')
 
 const CSport: CollectionConfig = {
   slug: 'c_sport',
   labels: {
-    singular: 'Číselník športov',
-    plural: 'Číselníky športov',
+    singular: translate('labels.singular'),
+    plural: translate('labels.plural'),
   },
   admin: {
     useAsTitle: 'name',
-    group:'Číselníky',
+    group: 'Číselníky',
   },
   access: {
     read: anyone,
@@ -23,13 +26,13 @@ const CSport: CollectionConfig = {
   fields: [
     {
       name: 'name',
-      label: 'Názov športu',
+      label: translate('fields.name'),
       type: 'text',
       required: true,
     },
     {
       name: 'info',
-      label: 'Popis',
+      label: translate('fields.info'),
       type: 'textarea',
     },
   ],

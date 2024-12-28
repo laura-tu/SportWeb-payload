@@ -1,0 +1,74 @@
+{
+    "users": {
+        "labels": {
+            "singular": "Používateľ",
+            "plural": "Používatelia"
+        },
+        "fields": {
+            "id": "ID",
+            "name": "Meno",
+            "roles": "Role",
+            "email": "Emailová adresa",
+            "hashedCode": "Hashovaný kód",
+            "created_at": "Vytvorené",
+            "updated_at": "Upravené"
+        },
+        "values": {
+            "admin": "Administrátor",
+            "sportCoach": "Tréner",
+            "user": "Športovec"
+        }
+    },
+    "u_coach": {
+        "labels": {
+            "singular": "Tréner",
+            "plural": "Tréneri"
+        },
+        "fields": {
+            "user": "Používateľ",
+            "name": "Meno",
+            "sport": "Šport",
+            "club": "Športový klub",
+            "athletes": "Športovci vedený trénerom"
+        }
+    },
+    "u_athlete": {
+        "labels": {
+            "singular": "Športovec",
+            "plural": "Športovci"
+        },
+        "fields": {
+            "user": "Používateľ",
+            "name": "Meno",
+            "birth_date": "Dátum narodenia",
+            "gender": "Pohlavie",
+            "sport": "Šport",
+            "club": "Športový klub"
+        },
+        "values": {
+            "muz": "Muž",
+            "zena": "Žena"
+        }
+    },
+    "c_sport": {
+        "labels": {
+            "singular": "Číselník športov",
+            "plural": "Číselníky športov"
+        },
+        "fields": {
+            "name": "Názov",
+            "info": "Informácie/ Popis"
+        }
+    },
+    "c_sport_club": {
+        "labels": {
+            "singular": "Číselník športového klubu",
+            "plural": "Číselník športových klubov"
+        },
+        "fields": {
+            "name": "Názov",
+            "short_name": "Skratka športového klubu",
+            "sport": "Šport"
+        }
+    }
+}

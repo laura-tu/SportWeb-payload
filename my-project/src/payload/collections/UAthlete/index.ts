@@ -2,17 +2,20 @@ import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
 import { checkRole } from '../Users/checkRole'
 import { anyone } from '../../access/anyone'
+import { tCollection } from '../../utils/translations'
+
+const translate = tCollection('u_athlete')
 
 const UAthlete: CollectionConfig = {
   slug: 'u_athlete',
   labels: {
-    singular: 'Športovec',
-    plural: 'Športovci',
+    singular: translate('labels.singular'),
+    plural: translate('labels.plural'),
   },
   admin: {
     useAsTitle: 'user',
     defaultColumns: ['user', 'sport', 'club'],
-    group:'Ľudia',
+    group: 'Ľudia',
   },
   access: {
     read: anyone,
@@ -24,7 +27,7 @@ const UAthlete: CollectionConfig = {
   fields: [
     {
       name: 'user',
-      label: 'Užívateľ',
+      label: translate('fields.user'),
       type: 'relationship',
       relationTo: 'users',
       //required: true,
@@ -48,7 +51,7 @@ const UAthlete: CollectionConfig = {
     },
     {
       name: 'name',
-      label: 'Meno',
+      label: translate('fields.name'),
       type: 'text',
       admin: {
         position: 'sidebar',
@@ -76,22 +79,22 @@ const UAthlete: CollectionConfig = {
     },
     {
       name: 'birth_date',
-      label: 'Dátum narodenia',
+      label: translate('fields.birth_date'),
       type: 'date',
       required: true,
     },
     {
       name: 'gender',
-      label: 'Pohlavie',
+      label: translate('fields.gender'),
       type: 'select',
       options: [
-        { label: 'Muž', value: 'muz' },
-        { label: 'Žena', value: 'zena' },
+        { label: translate('values.muz'), value: 'muz' },
+        { label: translate('values.zena'), value: 'zena' },
       ],
     },
     {
       name: 'sport',
-      label: 'Šport',
+      label: translate('fields.sport'),
       type: 'relationship',
       relationTo: 'c_sport',
       required: true,
@@ -99,7 +102,7 @@ const UAthlete: CollectionConfig = {
     },
     {
       name: 'club',
-      label: 'Športový klub',
+      label: translate('fields.club'),
       type: 'relationship',
       relationTo: 'c_sport_club',
     },

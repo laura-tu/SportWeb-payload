@@ -930,6 +930,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.25.0":
+  version: 7.26.0
+  resolution: "@babel/runtime@npm:7.26.0"
+  dependencies:
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: 10c0/12c01357e0345f89f4f7e8c0e81921f2a3e3e101f06e8eaa18a382b517376520cd2fa8c237726eb094dab25532855df28a7baaf1c26342b52782f6936b07c287
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.25.9":
   version: 7.25.9
   resolution: "@babel/template@npm:7.25.9"
@@ -6919,6 +6928,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"i18next@npm:^24.2.0":
+  version: 24.2.0
+  resolution: "i18next@npm:24.2.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.2"
+  peerDependencies:
+    typescript: ^5
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/3c41a4e214b8191e7c579db776a9dd6a5f02a0925bb5788c11e522f51c5e581546f53db22ba8cccb398d69cc463438aaca4660bad2990d5ffc854434bc9a72be
+  languageName: node
+  linkType: hard
+
 "iconv-lite@npm:0.4.24, iconv-lite@npm:^0.4.4":
   version: 0.4.24
   resolution: "iconv-lite@npm:0.4.24"
@@ -8504,6 +8527,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^4.6.0"
     eslint-plugin-simple-import-sort: "npm:^10.0.0"
     express: "npm:^4.19.2"
+    i18next: "npm:^24.2.0"
     jsonwebtoken: "npm:^9.0.2"
     mongoose: "npm:^8.7.2"
     nodemailer: "npm:^6.9.16"
@@ -8513,6 +8537,7 @@ __metadata:
     prettier: "npm:^2.7.1"
     qs: "npm:6.11.2"
     react-hook-form: "npm:7.45.4"
+    react-i18next: "npm:^15.2.0"
     react-router-dom: "npm:5.3.4"
     rimraf: "npm:^6.0.1"
     slate: "npm:0.91.4"
@@ -10283,6 +10308,24 @@ __metadata:
     react-native:
       optional: true
   checksum: 10c0/ffc40b157e274bc26fc82fc82761290804fffba33ceed552eb5a8c8c80899ea93a3fa7af4b0d719a9f101f3e08aab6f4754df953f1b720a61aa0317f5459abca
+  languageName: node
+  linkType: hard
+
+"react-i18next@npm:^15.2.0":
+  version: 15.2.0
+  resolution: "react-i18next@npm:15.2.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.25.0"
+    html-parse-stringify: "npm:^3.0.1"
+  peerDependencies:
+    i18next: ">= 23.2.3"
+    react: ">= 16.8.0"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: 10c0/e6dfd3f04a070777231ea50e750d74ed7a72c56e3f2da238e8666db65431c805482706bbc76bdb69e5196c4125ff4c955ea4166a1788997a679c3a5c03590654
   languageName: node
   linkType: hard
 

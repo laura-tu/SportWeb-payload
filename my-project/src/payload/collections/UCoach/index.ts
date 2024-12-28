@@ -2,12 +2,15 @@ import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
 import { checkRole } from '../Users/checkRole'
 import { anyone } from '../../access/anyone'
+import { tCollection } from '../../utils/translations'
+
+const translate = tCollection('u_coach')
 
 const UCoach: CollectionConfig = {
   slug: 'u_coach',
   labels: {
-    singular: 'Tréner',
-    plural: 'Tréneri',
+    singular: translate('labels.singular'),
+    plural: translate('labels.plural'),
   },
   admin: {
     useAsTitle: 'user',
@@ -25,7 +28,7 @@ const UCoach: CollectionConfig = {
   fields: [
     {
       name: 'user',
-      label: 'Užívateľ',
+      label: translate('fields.user'),
       type: 'relationship',
       relationTo: 'users',
       admin: {
@@ -47,7 +50,7 @@ const UCoach: CollectionConfig = {
     },
     {
       name: 'name',
-      label: 'Meno',
+      label: translate('fields.name'),
       type: 'text',
       admin: {
         position: 'sidebar',
@@ -75,7 +78,7 @@ const UCoach: CollectionConfig = {
     },
     {
       name: 'sport',
-      label: 'Šport',
+      label: translate('fields.sport'),
       type: 'relationship',
       relationTo: 'c_sport',
       required: true,
@@ -83,13 +86,13 @@ const UCoach: CollectionConfig = {
     },
     {
       name: 'club',
-      label: 'Športový klub',
+      label: translate('fields.club'),
       type: 'relationship',
       relationTo: 'c_sport_club',
     },
     {
-      name: 'athlete',
-      label: 'Športovci vedený trénerom',
+      name: 'athletes',
+      label: translate('fields.athletes'),
       type: 'relationship',
       relationTo: 'u_athlete',
       hasMany: true,

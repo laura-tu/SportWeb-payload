@@ -136,88 +136,6 @@ export interface Post {
         blockType: 'archive';
       }
   )[];
-  enablePremiumContent?: boolean | null;
-  premiumContent?:
-    | (
-        | {
-            invertBackground?: boolean | null;
-            richText: {
-              [k: string]: unknown;
-            }[];
-            links?:
-              | {
-                  link: {
-                    type?: ('reference' | 'custom') | null;
-                    newTab?: boolean | null;
-                    url?: string | null;
-                    label: string;
-                    appearance?: ('primary' | 'secondary') | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'cta';
-          }
-        | {
-            invertBackground?: boolean | null;
-            columns?:
-              | {
-                  size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-                  richText: {
-                    [k: string]: unknown;
-                  }[];
-                  enableLink?: boolean | null;
-                  link?: {
-                    type?: ('reference' | 'custom') | null;
-                    newTab?: boolean | null;
-                    url?: string | null;
-                    label: string;
-                    appearance?: ('default' | 'primary' | 'secondary') | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'content';
-          }
-        | {
-            invertBackground?: boolean | null;
-            position?: ('default' | 'fullscreen') | null;
-            media: string | Media;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'mediaBlock';
-          }
-        | {
-            introContent: {
-              [k: string]: unknown;
-            }[];
-            populateBy?: ('collection' | 'selection') | null;
-            relationTo?: 'posts' | null;
-            categories?: (string | Category)[] | null;
-            limit?: number | null;
-            selectedDocs?:
-              | {
-                  relationTo: 'posts';
-                  value: string | Post;
-                }[]
-              | null;
-            populatedDocs?:
-              | {
-                  relationTo: 'posts';
-                  value: string | Post;
-                }[]
-              | null;
-            populatedDocsTotal?: number | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'archive';
-          }
-      )[]
-    | null;
   relatedPosts?: (string | Post)[] | null;
   slug?: string | null;
   meta?: {
@@ -339,7 +257,7 @@ export interface UCoach {
   name?: string | null;
   sport: (string | CSport)[];
   club?: (string | null) | CSportClub;
-  athlete?: (string | UAthlete)[] | null;
+  athletes?: (string | UAthlete)[] | null;
   updatedAt: string;
   createdAt: string;
 }

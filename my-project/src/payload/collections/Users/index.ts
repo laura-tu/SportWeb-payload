@@ -7,12 +7,15 @@ import { checkRole } from './checkRole'
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
 import { forgotPassword, forgotPasswordSubject } from './hooks/email'
 import { loginAfterCreate } from './hooks/loginAfterCreate'
+import { tCollection } from '../../utils/translations'
+
+const translate = tCollection('users')
 
 const Users: CollectionConfig = {
   slug: 'users',
   labels: {
-    singular: 'Používateľ',
-    plural: 'Používatelia',
+    singular: translate('labels.singular'),
+    plural: translate('labels.plural'),
   },
   admin: {
     useAsTitle: 'name',
@@ -41,26 +44,32 @@ const Users: CollectionConfig = {
   },
   fields: [
     {
+      name: 'email',
+      type: 'email',
+      label: translate('fields.email'),
+    },
+    {
       name: 'name',
       type: 'text',
-      label: 'Meno',
+      label: translate('fields.name'),
     },
     {
       name: 'roles',
+      label: translate('fields.roles'),
       type: 'select',
       hasMany: true,
       defaultValue: ['user'],
       options: [
         {
-          label: 'admin',
+          label: translate('values.admin'),
           value: 'admin',
         },
         {
-          label: 'user',
+          label: translate('values.user'),
           value: 'user',
         },
         {
-          label: 'sportCoach',
+          label: translate('values.sportCoach'),
           value: 'sportCoach',
         },
       ],
@@ -76,7 +85,7 @@ const Users: CollectionConfig = {
     {
       name: 'hashedCode', //CRC32 hash of the user's example password
       type: 'text',
-      label: 'HashedCode',
+      label: translate('fields.hashedCode'),
       required: false,
       access: {
         read: () => true, // anyone can read a user's roles

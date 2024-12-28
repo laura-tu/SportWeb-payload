@@ -1,0 +1,22 @@
+{
+    "crop": "Orezať",
+    "cropToolDescription": "Vyberte oblasť obrázku, ktorú chcete zachovať.",
+    "dragAndDrop": "Pretiahnite sem súbor",
+    "dragAndDropHere": "Pretiahnite sem súbor",
+    "editImage": "Upraviť obrázok",
+    "fileName": "Názov súboru",
+    "fileSize": "Veľkosť súboru",
+    "focalPoint": "Ohnisko",
+    "focalPointDescription": "Pretiahnite bod zamerania priamo na náhľad alebo upravte hodnoty nižšie.",
+    "height": "Výška",
+    "lessInfo": "Menej informácií",
+    "moreInfo": "Viac informácií",
+    "previewSizes": "Náhľad veľkostí",
+    "selectCollectionToBrowse": "Vyberte kolekciu prehliadania.",
+    "selectFile": "Vybrať súbor",
+    "setCropArea": "Nastaviť oblasť orezania",
+    "setFocalPoint": "Nastaviť ohnisko",
+    "sizes": "Veľkosti",
+    "sizesFor": "Veľkosti pre {{label}}",
+    "width": "Šírka"
+}
