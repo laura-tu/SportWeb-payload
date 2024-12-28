@@ -6,6 +6,6 @@ dist
 .env
 .next
 .vercel
-.yarn/*
+.yarn
 .vscode
 yarn-error.log
