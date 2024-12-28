@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload/types'
 import { tCollection } from '../../utils/translations'
+import ChartComponent from '../../components/ChartComponent'
 
 const translate = tCollection('test_results')
 
@@ -64,7 +65,17 @@ const TestResults: CollectionConfig = {
         },
         {
           label: translate('tabs.graph'),
-          fields: [],
+          fields: [
+            {
+              name: 'chart',
+              type: 'ui', // Use the 'ui' field type to embed custom React components
+              admin: {
+                components: {
+                  Field: ChartComponent, // Reference your custom Chart.js component here
+                },
+              },
+            },
+          ],
         },
       ],
     },
