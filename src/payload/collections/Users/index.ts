@@ -82,17 +82,30 @@ const Users: CollectionConfig = {
         update: ({ req: { user } }) => user?.roles?.includes('admin') || false, // Only admins can update this field
       },
     },
-    {
+    /*{
       name: 'hashedCode', //CRC32 hash of the user's example password
       type: 'text',
       label: translate('fields.hashedCode'),
       required: false,
+      unique: true,
       access: {
         read: () => true, // anyone can read a user's roles
         create: ({ req: { user } }) => user?.roles?.includes('admin') || false, // Only admins can create this field
         update: ({ req: { user } }) => user?.roles?.includes('admin') || false, // Only admins can update this field
       },
-    },
+      hooks: {
+        beforeChange: [
+          ({ data, originalDoc }) => {
+            if (data.email && !originalDoc.email) {
+              // If email is being added for the first time, invalidate hashedCode
+              data.hashedCode = null
+              data.status = 'active' // Transition user to active
+            }
+            return data
+          },
+        ],
+      },
+    },*/
   ],
   timestamps: true,
 }

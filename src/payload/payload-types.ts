@@ -174,7 +174,6 @@ export interface User {
   id: string;
   name?: string | null;
   roles?: ('admin' | 'user' | 'sportCoach')[] | null;
-  hashedCode?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
