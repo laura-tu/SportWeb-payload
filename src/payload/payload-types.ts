@@ -16,6 +16,8 @@ export interface Config {
     c_sport_club: CSportClub;
     u_athlete: UAthlete;
     u_coach: UCoach;
+    files: File;
+    test_results: TestResult;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -257,6 +259,41 @@ export interface UCoach {
   sport: (string | CSport)[];
   club?: (string | null) | CSportClub;
   athletes?: (string | UAthlete)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "files".
+ */
+export interface File {
+  id: string;
+  title: string;
+  date: string;
+  user?: (string | null) | User;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "test_results".
+ */
+export interface TestResult {
+  id: string;
+  athlete: string | UAthlete;
+  coach?: (string | null) | UCoach;
+  testType: string;
+  resultData: string | File;
+  date: string;
+  notes?: string | null;
   updatedAt: string;
   createdAt: string;
 }

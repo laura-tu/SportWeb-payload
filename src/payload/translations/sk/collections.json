@@ -70,5 +70,37 @@
             "short_name": "Skratka športového klubu",
             "sport": "Šport"
         }
+    },
+    "test_results": {
+        "labels": {
+            "singular": "Výsledok testu",
+            "plural": "Výsledky testov"
+        },
+        "fields": {
+            "athlete": "Športovec",
+            "coach": "Tréner",
+            "testType": "Typ testu",
+            "resultData": "Výsledok testu",
+            "resultDescription":"Nahraj tu výsledok testu (Excel/Text)",
+            "date": "Dátum testu",
+            "notes": "Poznámky"
+        },
+        "tabs": {
+            "data": "Dáta",
+            "graph": "Graf"
+        }
+    },
+    "files": {
+        "labels": {
+            "singular": "Súbor",
+            "plural": "Súbory"
+        },
+        "fields": {
+            "title": "Názov",
+            "date": "Dátum",
+            "user": "Používateľ",
+            "created_at": "Vytvorené",
+            "updated_at": "Upravené"
+        }
     }
 }

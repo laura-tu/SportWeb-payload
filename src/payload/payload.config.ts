@@ -22,6 +22,10 @@ import CSportClub from './collections/C_SportClub'
 
 import UAthlete from './collections/UAthlete'
 import UCoach from './collections/UCoach'
+
+import Files from './collections/Files'
+import TestResults from './collections/Test_Results'
+
 import { i18nConfig } from '../payload/utils/translations'
 
 const generateTitle: GenerateTitle = () => {
@@ -40,7 +44,6 @@ export default buildConfig({
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
       beforeLogin: [BeforeLogin],
-
     },
     webpack: config => ({
       ...config,
@@ -65,7 +68,18 @@ export default buildConfig({
     url: process.env.DATABASE_URI,
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Posts, Media, Categories, Users, CSport, CSportClub, UAthlete, UCoach],
+  collections: [
+    Posts,
+    Media,
+    Categories,
+    Users,
+    CSport,
+    CSportClub,
+    UAthlete,
+    UCoach,
+    Files,
+    TestResults,
+  ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
