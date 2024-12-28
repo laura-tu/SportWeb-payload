@@ -12,6 +12,9 @@ const TestResults: CollectionConfig = {
   fields: [
     {
       type: 'tabs',
+      admin: {
+        className: 'custom-tabs',
+      },
       tabs: [
         {
           label: translate('tabs.data'),

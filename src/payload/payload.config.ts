@@ -39,6 +39,7 @@ dotenv.config({
 export default buildConfig({
   admin: {
     user: Users.slug,
+    css: path.resolve(__dirname, './global-overrides.scss'),
     bundler: webpackBundler(),
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
