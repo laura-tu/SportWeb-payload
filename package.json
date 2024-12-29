@@ -29,6 +29,8 @@
     "@payloadcms/plugin-redirects": "^1.0.0",
     "@payloadcms/plugin-seo": "^1.0.10",
     "@payloadcms/richtext-slate": "^1.0.0",
+    "@tanstack/react-query": "^5.62.11",
+    "axios": "^1.7.9",
     "bcrypt": "^5.1.1",
     "crc-32": "^1.2.2",
     "cross-env": "^7.0.3",

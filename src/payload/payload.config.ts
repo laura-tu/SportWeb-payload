@@ -9,6 +9,7 @@ import { slateEditor } from '@payloadcms/richtext-slate'
 import dotenv from 'dotenv'
 import path from 'path'
 import { buildConfig } from 'payload/config'
+import QueryProvider from './providers/queryProvider'
 
 import Categories from './collections/Categories'
 import { Media } from './collections/Media'
@@ -45,6 +46,7 @@ export default buildConfig({
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
       beforeLogin: [BeforeLogin],
+      providers: [QueryProvider],
     },
     webpack: config => ({
       ...config,

@@ -10,7 +10,18 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
+import { useTestResultsQuery } from '../../api/hooks/test-results'
+
 const ChartComponent: React.FC = () => {
+  const {
+    data: testResults,
+    /*isLoading,
+    isFetching,
+    isError,
+    error,*/
+  } = useTestResultsQuery({ limit: 5 })
+  console.log(testResults?.docs[0])
+
   // Sample data for the bar chart
   const data = [
     { name: 'January', value: 65 },
