@@ -81,7 +81,7 @@
             "coach": "Tréner",
             "testType": "Typ testu",
             "resultData": "Výsledok testu",
-            "resultDescription":"Nahraj tu výsledok testu (Excel/Text)",
+            "resultDescription": "Nahraj tu výsledok testu (Excel/Text)",
             "date": "Dátum testu",
             "notes": "Poznámky"
         },
@@ -90,10 +90,10 @@
             "graph": "Graf"
         }
     },
-    "files": {
+    "media": {
         "labels": {
-            "singular": "Súbor",
-            "plural": "Súbory"
+            "singular": "Médium",
+            "plural": "Média"
         },
         "fields": {
             "title": "Názov",

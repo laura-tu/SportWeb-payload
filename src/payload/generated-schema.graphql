@@ -35,10 +35,6 @@ type Query {
   U_coaches(where: U_coach_where, limit: Int, page: Int, sort: String): U_coaches
   countU_coaches(where: U_coach_where): countU_coaches
   docAccessU_coach(id: String!): u_coachDocAccess
-  File(id: String!): File
-  Files(where: File_where, limit: Int, page: Int, sort: String): Files
-  countFiles(where: File_where): countFiles
-  docAccessFile(id: String!): filesDocAccess
   Test_result(id: String!): Test_result
   Test_results(where: Test_result_where, limit: Int, page: Int, sort: String): Test_results
   countTest_results(where: Test_result_where): countTest_results
@@ -169,7 +165,10 @@ enum Post_Hero_Links_Link_appearance {
 
 type Media {
   id: String
-  alt: String!
+  title: String!
+  date: DateTime!
+  user: User
+  alt: String
   caption(depth: Int): JSON
   updatedAt: DateTime
   createdAt: DateTime
@@ -184,6 +183,9 @@ type Media {
 }
 
 input Post_Hero_Media_where {
+  title: Post_Hero_Media_title_operator
+  date: Post_Hero_Media_date_operator
+  user: Post_Hero_Media_user_operator
   alt: Post_Hero_Media_alt_operator
   caption: Post_Hero_Media_caption_operator
   updatedAt: Post_Hero_Media_updatedAt_operator
@@ -201,6 +203,35 @@ input Post_Hero_Media_where {
   OR: [Post_Hero_Media_where_or]
 }
 
+input Post_Hero_Media_title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Post_Hero_Media_date_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+}
+
+input Post_Hero_Media_user_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input Post_Hero_Media_alt_operator {
   equals: String
   not_equals: String
@@ -209,6 +240,7 @@ input Post_Hero_Media_alt_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Post_Hero_Media_caption_operator {
@@ -336,6 +368,9 @@ input Post_Hero_Media_id_operator {
 }
 
 input Post_Hero_Media_where_and {
+  title: Post_Hero_Media_title_operator
+  date: Post_Hero_Media_date_operator
+  user: Post_Hero_Media_user_operator
   alt: Post_Hero_Media_alt_operator
   caption: Post_Hero_Media_caption_operator
   updatedAt: Post_Hero_Media_updatedAt_operator
@@ -354,6 +389,9 @@ input Post_Hero_Media_where_and {
 }
 
 input Post_Hero_Media_where_or {
+  title: Post_Hero_Media_title_operator
+  date: Post_Hero_Media_date_operator
+  user: Post_Hero_Media_user_operator
   alt: Post_Hero_Media_alt_operator
   caption: Post_Hero_Media_caption_operator
   updatedAt: Post_Hero_Media_updatedAt_operator
@@ -462,6 +500,9 @@ enum MediaBlock_position {
 }
 
 input MediaBlock_Media_where {
+  title: MediaBlock_Media_title_operator
+  date: MediaBlock_Media_date_operator
+  user: MediaBlock_Media_user_operator
   alt: MediaBlock_Media_alt_operator
   caption: MediaBlock_Media_caption_operator
   updatedAt: MediaBlock_Media_updatedAt_operator
@@ -479,6 +520,35 @@ input MediaBlock_Media_where {
   OR: [MediaBlock_Media_where_or]
 }
 
+input MediaBlock_Media_title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input MediaBlock_Media_date_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+}
+
+input MediaBlock_Media_user_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input MediaBlock_Media_alt_operator {
   equals: String
   not_equals: String
@@ -487,6 +557,7 @@ input MediaBlock_Media_alt_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input MediaBlock_Media_caption_operator {
@@ -614,6 +685,9 @@ input MediaBlock_Media_id_operator {
 }
 
 input MediaBlock_Media_where_and {
+  title: MediaBlock_Media_title_operator
+  date: MediaBlock_Media_date_operator
+  user: MediaBlock_Media_user_operator
   alt: MediaBlock_Media_alt_operator
   caption: MediaBlock_Media_caption_operator
   updatedAt: MediaBlock_Media_updatedAt_operator
@@ -632,6 +706,9 @@ input MediaBlock_Media_where_and {
 }
 
 input MediaBlock_Media_where_or {
+  title: MediaBlock_Media_title_operator
+  date: MediaBlock_Media_date_operator
+  user: MediaBlock_Media_user_operator
   alt: MediaBlock_Media_alt_operator
   caption: MediaBlock_Media_caption_operator
   updatedAt: MediaBlock_Media_updatedAt_operator
@@ -701,6 +778,9 @@ type Post_Meta {
 }
 
 input Post_Meta_Image_where {
+  title: Post_Meta_Image_title_operator
+  date: Post_Meta_Image_date_operator
+  user: Post_Meta_Image_user_operator
   alt: Post_Meta_Image_alt_operator
   caption: Post_Meta_Image_caption_operator
   updatedAt: Post_Meta_Image_updatedAt_operator
@@ -718,6 +798,35 @@ input Post_Meta_Image_where {
   OR: [Post_Meta_Image_where_or]
 }
 
+input Post_Meta_Image_title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Post_Meta_Image_date_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+}
+
+input Post_Meta_Image_user_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input Post_Meta_Image_alt_operator {
   equals: String
   not_equals: String
@@ -726,6 +835,7 @@ input Post_Meta_Image_alt_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Post_Meta_Image_caption_operator {
@@ -853,6 +963,9 @@ input Post_Meta_Image_id_operator {
 }
 
 input Post_Meta_Image_where_and {
+  title: Post_Meta_Image_title_operator
+  date: Post_Meta_Image_date_operator
+  user: Post_Meta_Image_user_operator
   alt: Post_Meta_Image_alt_operator
   caption: Post_Meta_Image_caption_operator
   updatedAt: Post_Meta_Image_updatedAt_operator
@@ -871,6 +984,9 @@ input Post_Meta_Image_where_and {
 }
 
 input Post_Meta_Image_where_or {
+  title: Post_Meta_Image_title_operator
+  date: Post_Meta_Image_date_operator
+  user: Post_Meta_Image_user_operator
   alt: Post_Meta_Image_alt_operator
   caption: Post_Meta_Image_caption_operator
   updatedAt: Post_Meta_Image_updatedAt_operator
@@ -2070,6 +2186,9 @@ enum PostVersion_Version_Hero_Links_Link_appearance {
 }
 
 input PostVersion_Version_Hero_Media_where {
+  title: PostVersion_Version_Hero_Media_title_operator
+  date: PostVersion_Version_Hero_Media_date_operator
+  user: PostVersion_Version_Hero_Media_user_operator
   alt: PostVersion_Version_Hero_Media_alt_operator
   caption: PostVersion_Version_Hero_Media_caption_operator
   updatedAt: PostVersion_Version_Hero_Media_updatedAt_operator
@@ -2087,6 +2206,35 @@ input PostVersion_Version_Hero_Media_where {
   OR: [PostVersion_Version_Hero_Media_where_or]
 }
 
+input PostVersion_Version_Hero_Media_title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input PostVersion_Version_Hero_Media_date_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+}
+
+input PostVersion_Version_Hero_Media_user_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input PostVersion_Version_Hero_Media_alt_operator {
   equals: String
   not_equals: String
@@ -2095,6 +2243,7 @@ input PostVersion_Version_Hero_Media_alt_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input PostVersion_Version_Hero_Media_caption_operator {
@@ -2222,6 +2371,9 @@ input PostVersion_Version_Hero_Media_id_operator {
 }
 
 input PostVersion_Version_Hero_Media_where_and {
+  title: PostVersion_Version_Hero_Media_title_operator
+  date: PostVersion_Version_Hero_Media_date_operator
+  user: PostVersion_Version_Hero_Media_user_operator
   alt: PostVersion_Version_Hero_Media_alt_operator
   caption: PostVersion_Version_Hero_Media_caption_operator
   updatedAt: PostVersion_Version_Hero_Media_updatedAt_operator
@@ -2240,6 +2392,9 @@ input PostVersion_Version_Hero_Media_where_and {
 }
 
 input PostVersion_Version_Hero_Media_where_or {
+  title: PostVersion_Version_Hero_Media_title_operator
+  date: PostVersion_Version_Hero_Media_date_operator
+  user: PostVersion_Version_Hero_Media_user_operator
   alt: PostVersion_Version_Hero_Media_alt_operator
   caption: PostVersion_Version_Hero_Media_caption_operator
   updatedAt: PostVersion_Version_Hero_Media_updatedAt_operator
@@ -2266,6 +2421,9 @@ type PostVersion_Version_Meta {
 }
 
 input PostVersion_Version_Meta_Image_where {
+  title: PostVersion_Version_Meta_Image_title_operator
+  date: PostVersion_Version_Meta_Image_date_operator
+  user: PostVersion_Version_Meta_Image_user_operator
   alt: PostVersion_Version_Meta_Image_alt_operator
   caption: PostVersion_Version_Meta_Image_caption_operator
   updatedAt: PostVersion_Version_Meta_Image_updatedAt_operator
@@ -2283,6 +2441,35 @@ input PostVersion_Version_Meta_Image_where {
   OR: [PostVersion_Version_Meta_Image_where_or]
 }
 
+input PostVersion_Version_Meta_Image_title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input PostVersion_Version_Meta_Image_date_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+}
+
+input PostVersion_Version_Meta_Image_user_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input PostVersion_Version_Meta_Image_alt_operator {
   equals: String
   not_equals: String
@@ -2291,6 +2478,7 @@ input PostVersion_Version_Meta_Image_alt_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input PostVersion_Version_Meta_Image_caption_operator {
@@ -2418,6 +2606,9 @@ input PostVersion_Version_Meta_Image_id_operator {
 }
 
 input PostVersion_Version_Meta_Image_where_and {
+  title: PostVersion_Version_Meta_Image_title_operator
+  date: PostVersion_Version_Meta_Image_date_operator
+  user: PostVersion_Version_Meta_Image_user_operator
   alt: PostVersion_Version_Meta_Image_alt_operator
   caption: PostVersion_Version_Meta_Image_caption_operator
   updatedAt: PostVersion_Version_Meta_Image_updatedAt_operator
@@ -2436,6 +2627,9 @@ input PostVersion_Version_Meta_Image_where_and {
 }
 
 input PostVersion_Version_Meta_Image_where_or {
+  title: PostVersion_Version_Meta_Image_title_operator
+  date: PostVersion_Version_Meta_Image_date_operator
+  user: PostVersion_Version_Meta_Image_user_operator
   alt: PostVersion_Version_Meta_Image_alt_operator
   caption: PostVersion_Version_Meta_Image_caption_operator
   updatedAt: PostVersion_Version_Meta_Image_updatedAt_operator
@@ -2868,6 +3062,9 @@ type allMedia {
 }
 
 input Media_where {
+  title: Media_title_operator
+  date: Media_date_operator
+  user: Media_user_operator
   alt: Media_alt_operator
   caption: Media_caption_operator
   updatedAt: Media_updatedAt_operator
@@ -2885,6 +3082,35 @@ input Media_where {
   OR: [Media_where_or]
 }
 
+input Media_title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Media_date_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+}
+
+input Media_user_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input Media_alt_operator {
   equals: String
   not_equals: String
@@ -2893,6 +3119,7 @@ input Media_alt_operator {
   in: [String]
   not_in: [String]
   all: [String]
+  exists: Boolean
 }
 
 input Media_caption_operator {
@@ -3020,6 +3247,9 @@ input Media_id_operator {
 }
 
 input Media_where_and {
+  title: Media_title_operator
+  date: Media_date_operator
+  user: Media_user_operator
   alt: Media_alt_operator
   caption: Media_caption_operator
   updatedAt: Media_updatedAt_operator
@@ -3038,6 +3268,9 @@ input Media_where_and {
 }
 
 input Media_where_or {
+  title: Media_title_operator
+  date: Media_date_operator
+  user: Media_user_operator
   alt: Media_alt_operator
   caption: Media_caption_operator
   updatedAt: Media_updatedAt_operator
@@ -3068,6 +3301,9 @@ type mediaDocAccess {
 }
 
 type MediaDocAccessFields {
+  title: MediaDocAccessFields_title
+  date: MediaDocAccessFields_date
+  user: MediaDocAccessFields_user
   alt: MediaDocAccessFields_alt
   caption: MediaDocAccessFields_caption
   updatedAt: MediaDocAccessFields_updatedAt
@@ -3080,6 +3316,75 @@ type MediaDocAccessFields {
   height: MediaDocAccessFields_height
   focalX: MediaDocAccessFields_focalX
   focalY: MediaDocAccessFields_focalY
+}
+
+type MediaDocAccessFields_title {
+  create: MediaDocAccessFields_title_Create
+  read: MediaDocAccessFields_title_Read
+  update: MediaDocAccessFields_title_Update
+  delete: MediaDocAccessFields_title_Delete
+}
+
+type MediaDocAccessFields_title_Create {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_title_Read {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_title_Update {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_title_Delete {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_date {
+  create: MediaDocAccessFields_date_Create
+  read: MediaDocAccessFields_date_Read
+  update: MediaDocAccessFields_date_Update
+  delete: MediaDocAccessFields_date_Delete
+}
+
+type MediaDocAccessFields_date_Create {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_date_Read {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_date_Update {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_date_Delete {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_user {
+  create: MediaDocAccessFields_user_Create
+  read: MediaDocAccessFields_user_Read
+  update: MediaDocAccessFields_user_Update
+  delete: MediaDocAccessFields_user_Delete
+}
+
+type MediaDocAccessFields_user_Create {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_user_Read {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_user_Update {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_user_Delete {
+  permission: Boolean!
 }
 
 type MediaDocAccessFields_alt {
@@ -5340,592 +5645,12 @@ type U_coachDeleteDocAccess {
   where: JSONObject
 }
 
-type File {
-  id: String
-  title: String!
-  date: DateTime!
-  user: User
-  updatedAt: DateTime
-  createdAt: DateTime
-  url: String
-  filename: String
-  mimeType: String
-  filesize: Float
-  width: Float
-  height: Float
-  focalX: Float
-  focalY: Float
-}
-
-type Files {
-  docs: [File]
-  hasNextPage: Boolean
-  hasPrevPage: Boolean
-  limit: Int
-  nextPage: Int
-  offset: Int
-  page: Int
-  pagingCounter: Int
-  prevPage: Int
-  totalDocs: Int
-  totalPages: Int
-}
-
-input File_where {
-  title: File_title_operator
-  date: File_date_operator
-  user: File_user_operator
-  updatedAt: File_updatedAt_operator
-  createdAt: File_createdAt_operator
-  url: File_url_operator
-  filename: File_filename_operator
-  mimeType: File_mimeType_operator
-  filesize: File_filesize_operator
-  width: File_width_operator
-  height: File_height_operator
-  focalX: File_focalX_operator
-  focalY: File_focalY_operator
-  id: File_id_operator
-  AND: [File_where_and]
-  OR: [File_where_or]
-}
-
-input File_title_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input File_date_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-}
-
-input File_user_operator {
-  equals: JSON
-  not_equals: JSON
-  in: [JSON]
-  not_in: [JSON]
-  all: [JSON]
-  exists: Boolean
-}
-
-input File_updatedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input File_createdAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input File_url_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input File_filename_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input File_mimeType_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input File_filesize_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input File_width_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input File_height_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input File_focalX_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input File_focalY_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input File_id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input File_where_and {
-  title: File_title_operator
-  date: File_date_operator
-  user: File_user_operator
-  updatedAt: File_updatedAt_operator
-  createdAt: File_createdAt_operator
-  url: File_url_operator
-  filename: File_filename_operator
-  mimeType: File_mimeType_operator
-  filesize: File_filesize_operator
-  width: File_width_operator
-  height: File_height_operator
-  focalX: File_focalX_operator
-  focalY: File_focalY_operator
-  id: File_id_operator
-  AND: [File_where_and]
-  OR: [File_where_or]
-}
-
-input File_where_or {
-  title: File_title_operator
-  date: File_date_operator
-  user: File_user_operator
-  updatedAt: File_updatedAt_operator
-  createdAt: File_createdAt_operator
-  url: File_url_operator
-  filename: File_filename_operator
-  mimeType: File_mimeType_operator
-  filesize: File_filesize_operator
-  width: File_width_operator
-  height: File_height_operator
-  focalX: File_focalX_operator
-  focalY: File_focalY_operator
-  id: File_id_operator
-  AND: [File_where_and]
-  OR: [File_where_or]
-}
-
-type countFiles {
-  totalDocs: Int
-}
-
-type filesDocAccess {
-  fields: FilesDocAccessFields
-  create: FilesCreateDocAccess
-  read: FilesReadDocAccess
-  update: FilesUpdateDocAccess
-  delete: FilesDeleteDocAccess
-}
-
-type FilesDocAccessFields {
-  title: FilesDocAccessFields_title
-  date: FilesDocAccessFields_date
-  user: FilesDocAccessFields_user
-  updatedAt: FilesDocAccessFields_updatedAt
-  createdAt: FilesDocAccessFields_createdAt
-  url: FilesDocAccessFields_url
-  filename: FilesDocAccessFields_filename
-  mimeType: FilesDocAccessFields_mimeType
-  filesize: FilesDocAccessFields_filesize
-  width: FilesDocAccessFields_width
-  height: FilesDocAccessFields_height
-  focalX: FilesDocAccessFields_focalX
-  focalY: FilesDocAccessFields_focalY
-}
-
-type FilesDocAccessFields_title {
-  create: FilesDocAccessFields_title_Create
-  read: FilesDocAccessFields_title_Read
-  update: FilesDocAccessFields_title_Update
-  delete: FilesDocAccessFields_title_Delete
-}
-
-type FilesDocAccessFields_title_Create {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_title_Read {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_title_Update {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_title_Delete {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_date {
-  create: FilesDocAccessFields_date_Create
-  read: FilesDocAccessFields_date_Read
-  update: FilesDocAccessFields_date_Update
-  delete: FilesDocAccessFields_date_Delete
-}
-
-type FilesDocAccessFields_date_Create {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_date_Read {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_date_Update {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_date_Delete {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_user {
-  create: FilesDocAccessFields_user_Create
-  read: FilesDocAccessFields_user_Read
-  update: FilesDocAccessFields_user_Update
-  delete: FilesDocAccessFields_user_Delete
-}
-
-type FilesDocAccessFields_user_Create {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_user_Read {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_user_Update {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_user_Delete {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_updatedAt {
-  create: FilesDocAccessFields_updatedAt_Create
-  read: FilesDocAccessFields_updatedAt_Read
-  update: FilesDocAccessFields_updatedAt_Update
-  delete: FilesDocAccessFields_updatedAt_Delete
-}
-
-type FilesDocAccessFields_updatedAt_Create {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_updatedAt_Read {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_updatedAt_Update {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_updatedAt_Delete {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_createdAt {
-  create: FilesDocAccessFields_createdAt_Create
-  read: FilesDocAccessFields_createdAt_Read
-  update: FilesDocAccessFields_createdAt_Update
-  delete: FilesDocAccessFields_createdAt_Delete
-}
-
-type FilesDocAccessFields_createdAt_Create {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_createdAt_Read {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_createdAt_Update {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_createdAt_Delete {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_url {
-  create: FilesDocAccessFields_url_Create
-  read: FilesDocAccessFields_url_Read
-  update: FilesDocAccessFields_url_Update
-  delete: FilesDocAccessFields_url_Delete
-}
-
-type FilesDocAccessFields_url_Create {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_url_Read {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_url_Update {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_url_Delete {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_filename {
-  create: FilesDocAccessFields_filename_Create
-  read: FilesDocAccessFields_filename_Read
-  update: FilesDocAccessFields_filename_Update
-  delete: FilesDocAccessFields_filename_Delete
-}
-
-type FilesDocAccessFields_filename_Create {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_filename_Read {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_filename_Update {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_filename_Delete {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_mimeType {
-  create: FilesDocAccessFields_mimeType_Create
-  read: FilesDocAccessFields_mimeType_Read
-  update: FilesDocAccessFields_mimeType_Update
-  delete: FilesDocAccessFields_mimeType_Delete
-}
-
-type FilesDocAccessFields_mimeType_Create {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_mimeType_Read {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_mimeType_Update {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_mimeType_Delete {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_filesize {
-  create: FilesDocAccessFields_filesize_Create
-  read: FilesDocAccessFields_filesize_Read
-  update: FilesDocAccessFields_filesize_Update
-  delete: FilesDocAccessFields_filesize_Delete
-}
-
-type FilesDocAccessFields_filesize_Create {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_filesize_Read {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_filesize_Update {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_filesize_Delete {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_width {
-  create: FilesDocAccessFields_width_Create
-  read: FilesDocAccessFields_width_Read
-  update: FilesDocAccessFields_width_Update
-  delete: FilesDocAccessFields_width_Delete
-}
-
-type FilesDocAccessFields_width_Create {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_width_Read {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_width_Update {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_width_Delete {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_height {
-  create: FilesDocAccessFields_height_Create
-  read: FilesDocAccessFields_height_Read
-  update: FilesDocAccessFields_height_Update
-  delete: FilesDocAccessFields_height_Delete
-}
-
-type FilesDocAccessFields_height_Create {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_height_Read {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_height_Update {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_height_Delete {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_focalX {
-  create: FilesDocAccessFields_focalX_Create
-  read: FilesDocAccessFields_focalX_Read
-  update: FilesDocAccessFields_focalX_Update
-  delete: FilesDocAccessFields_focalX_Delete
-}
-
-type FilesDocAccessFields_focalX_Create {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_focalX_Read {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_focalX_Update {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_focalX_Delete {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_focalY {
-  create: FilesDocAccessFields_focalY_Create
-  read: FilesDocAccessFields_focalY_Read
-  update: FilesDocAccessFields_focalY_Update
-  delete: FilesDocAccessFields_focalY_Delete
-}
-
-type FilesDocAccessFields_focalY_Create {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_focalY_Read {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_focalY_Update {
-  permission: Boolean!
-}
-
-type FilesDocAccessFields_focalY_Delete {
-  permission: Boolean!
-}
-
-type FilesCreateDocAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type FilesReadDocAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type FilesUpdateDocAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type FilesDeleteDocAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
 type Test_result {
   id: String
   athlete: U_athlete!
   coach: U_coach
   testType: String!
-  resultData(where: Test_result_ResultData_where): File!
+  resultData(where: Test_result_ResultData_where): Media!
   date: DateTime!
   notes: String
   updatedAt: DateTime
@@ -5936,6 +5661,8 @@ input Test_result_ResultData_where {
   title: Test_result_ResultData_title_operator
   date: Test_result_ResultData_date_operator
   user: Test_result_ResultData_user_operator
+  alt: Test_result_ResultData_alt_operator
+  caption: Test_result_ResultData_caption_operator
   updatedAt: Test_result_ResultData_updatedAt_operator
   createdAt: Test_result_ResultData_createdAt_operator
   url: Test_result_ResultData_url_operator
@@ -5977,6 +5704,25 @@ input Test_result_ResultData_user_operator {
   in: [JSON]
   not_in: [JSON]
   all: [JSON]
+  exists: Boolean
+}
+
+input Test_result_ResultData_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Test_result_ResultData_caption_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
   exists: Boolean
 }
 
@@ -6100,6 +5846,8 @@ input Test_result_ResultData_where_and {
   title: Test_result_ResultData_title_operator
   date: Test_result_ResultData_date_operator
   user: Test_result_ResultData_user_operator
+  alt: Test_result_ResultData_alt_operator
+  caption: Test_result_ResultData_caption_operator
   updatedAt: Test_result_ResultData_updatedAt_operator
   createdAt: Test_result_ResultData_createdAt_operator
   url: Test_result_ResultData_url_operator
@@ -6119,6 +5867,8 @@ input Test_result_ResultData_where_or {
   title: Test_result_ResultData_title_operator
   date: Test_result_ResultData_date_operator
   user: Test_result_ResultData_user_operator
+  alt: Test_result_ResultData_alt_operator
+  caption: Test_result_ResultData_caption_operator
   updatedAt: Test_result_ResultData_updatedAt_operator
   createdAt: Test_result_ResultData_createdAt_operator
   url: Test_result_ResultData_url_operator
@@ -7157,7 +6907,6 @@ type Access {
   c_sport_club: c_sport_clubAccess
   u_athlete: u_athleteAccess
   u_coach: u_coachAccess
-  files: filesAccess
   test_results: test_resultsAccess
   redirects: redirectsAccess
   payload_preferences: payload_preferencesAccess
@@ -7925,6 +7674,9 @@ type mediaAccess {
 }
 
 type MediaFields {
+  title: MediaFields_title
+  date: MediaFields_date
+  user: MediaFields_user
   alt: MediaFields_alt
   caption: MediaFields_caption
   updatedAt: MediaFields_updatedAt
@@ -7937,6 +7689,75 @@ type MediaFields {
   height: MediaFields_height
   focalX: MediaFields_focalX
   focalY: MediaFields_focalY
+}
+
+type MediaFields_title {
+  create: MediaFields_title_Create
+  read: MediaFields_title_Read
+  update: MediaFields_title_Update
+  delete: MediaFields_title_Delete
+}
+
+type MediaFields_title_Create {
+  permission: Boolean!
+}
+
+type MediaFields_title_Read {
+  permission: Boolean!
+}
+
+type MediaFields_title_Update {
+  permission: Boolean!
+}
+
+type MediaFields_title_Delete {
+  permission: Boolean!
+}
+
+type MediaFields_date {
+  create: MediaFields_date_Create
+  read: MediaFields_date_Read
+  update: MediaFields_date_Update
+  delete: MediaFields_date_Delete
+}
+
+type MediaFields_date_Create {
+  permission: Boolean!
+}
+
+type MediaFields_date_Read {
+  permission: Boolean!
+}
+
+type MediaFields_date_Update {
+  permission: Boolean!
+}
+
+type MediaFields_date_Delete {
+  permission: Boolean!
+}
+
+type MediaFields_user {
+  create: MediaFields_user_Create
+  read: MediaFields_user_Read
+  update: MediaFields_user_Update
+  delete: MediaFields_user_Delete
+}
+
+type MediaFields_user_Create {
+  permission: Boolean!
+}
+
+type MediaFields_user_Read {
+  permission: Boolean!
+}
+
+type MediaFields_user_Update {
+  permission: Boolean!
+}
+
+type MediaFields_user_Delete {
+  permission: Boolean!
 }
 
 type MediaFields_alt {
@@ -9367,349 +9188,6 @@ type U_coachDeleteAccess {
   where: JSONObject
 }
 
-type filesAccess {
-  fields: FilesFields
-  create: FilesCreateAccess
-  read: FilesReadAccess
-  update: FilesUpdateAccess
-  delete: FilesDeleteAccess
-}
-
-type FilesFields {
-  title: FilesFields_title
-  date: FilesFields_date
-  user: FilesFields_user
-  updatedAt: FilesFields_updatedAt
-  createdAt: FilesFields_createdAt
-  url: FilesFields_url
-  filename: FilesFields_filename
-  mimeType: FilesFields_mimeType
-  filesize: FilesFields_filesize
-  width: FilesFields_width
-  height: FilesFields_height
-  focalX: FilesFields_focalX
-  focalY: FilesFields_focalY
-}
-
-type FilesFields_title {
-  create: FilesFields_title_Create
-  read: FilesFields_title_Read
-  update: FilesFields_title_Update
-  delete: FilesFields_title_Delete
-}
-
-type FilesFields_title_Create {
-  permission: Boolean!
-}
-
-type FilesFields_title_Read {
-  permission: Boolean!
-}
-
-type FilesFields_title_Update {
-  permission: Boolean!
-}
-
-type FilesFields_title_Delete {
-  permission: Boolean!
-}
-
-type FilesFields_date {
-  create: FilesFields_date_Create
-  read: FilesFields_date_Read
-  update: FilesFields_date_Update
-  delete: FilesFields_date_Delete
-}
-
-type FilesFields_date_Create {
-  permission: Boolean!
-}
-
-type FilesFields_date_Read {
-  permission: Boolean!
-}
-
-type FilesFields_date_Update {
-  permission: Boolean!
-}
-
-type FilesFields_date_Delete {
-  permission: Boolean!
-}
-
-type FilesFields_user {
-  create: FilesFields_user_Create
-  read: FilesFields_user_Read
-  update: FilesFields_user_Update
-  delete: FilesFields_user_Delete
-}
-
-type FilesFields_user_Create {
-  permission: Boolean!
-}
-
-type FilesFields_user_Read {
-  permission: Boolean!
-}
-
-type FilesFields_user_Update {
-  permission: Boolean!
-}
-
-type FilesFields_user_Delete {
-  permission: Boolean!
-}
-
-type FilesFields_updatedAt {
-  create: FilesFields_updatedAt_Create
-  read: FilesFields_updatedAt_Read
-  update: FilesFields_updatedAt_Update
-  delete: FilesFields_updatedAt_Delete
-}
-
-type FilesFields_updatedAt_Create {
-  permission: Boolean!
-}
-
-type FilesFields_updatedAt_Read {
-  permission: Boolean!
-}
-
-type FilesFields_updatedAt_Update {
-  permission: Boolean!
-}
-
-type FilesFields_updatedAt_Delete {
-  permission: Boolean!
-}
-
-type FilesFields_createdAt {
-  create: FilesFields_createdAt_Create
-  read: FilesFields_createdAt_Read
-  update: FilesFields_createdAt_Update
-  delete: FilesFields_createdAt_Delete
-}
-
-type FilesFields_createdAt_Create {
-  permission: Boolean!
-}
-
-type FilesFields_createdAt_Read {
-  permission: Boolean!
-}
-
-type FilesFields_createdAt_Update {
-  permission: Boolean!
-}
-
-type FilesFields_createdAt_Delete {
-  permission: Boolean!
-}
-
-type FilesFields_url {
-  create: FilesFields_url_Create
-  read: FilesFields_url_Read
-  update: FilesFields_url_Update
-  delete: FilesFields_url_Delete
-}
-
-type FilesFields_url_Create {
-  permission: Boolean!
-}
-
-type FilesFields_url_Read {
-  permission: Boolean!
-}
-
-type FilesFields_url_Update {
-  permission: Boolean!
-}
-
-type FilesFields_url_Delete {
-  permission: Boolean!
-}
-
-type FilesFields_filename {
-  create: FilesFields_filename_Create
-  read: FilesFields_filename_Read
-  update: FilesFields_filename_Update
-  delete: FilesFields_filename_Delete
-}
-
-type FilesFields_filename_Create {
-  permission: Boolean!
-}
-
-type FilesFields_filename_Read {
-  permission: Boolean!
-}
-
-type FilesFields_filename_Update {
-  permission: Boolean!
-}
-
-type FilesFields_filename_Delete {
-  permission: Boolean!
-}
-
-type FilesFields_mimeType {
-  create: FilesFields_mimeType_Create
-  read: FilesFields_mimeType_Read
-  update: FilesFields_mimeType_Update
-  delete: FilesFields_mimeType_Delete
-}
-
-type FilesFields_mimeType_Create {
-  permission: Boolean!
-}
-
-type FilesFields_mimeType_Read {
-  permission: Boolean!
-}
-
-type FilesFields_mimeType_Update {
-  permission: Boolean!
-}
-
-type FilesFields_mimeType_Delete {
-  permission: Boolean!
-}
-
-type FilesFields_filesize {
-  create: FilesFields_filesize_Create
-  read: FilesFields_filesize_Read
-  update: FilesFields_filesize_Update
-  delete: FilesFields_filesize_Delete
-}
-
-type FilesFields_filesize_Create {
-  permission: Boolean!
-}
-
-type FilesFields_filesize_Read {
-  permission: Boolean!
-}
-
-type FilesFields_filesize_Update {
-  permission: Boolean!
-}
-
-type FilesFields_filesize_Delete {
-  permission: Boolean!
-}
-
-type FilesFields_width {
-  create: FilesFields_width_Create
-  read: FilesFields_width_Read
-  update: FilesFields_width_Update
-  delete: FilesFields_width_Delete
-}
-
-type FilesFields_width_Create {
-  permission: Boolean!
-}
-
-type FilesFields_width_Read {
-  permission: Boolean!
-}
-
-type FilesFields_width_Update {
-  permission: Boolean!
-}
-
-type FilesFields_width_Delete {
-  permission: Boolean!
-}
-
-type FilesFields_height {
-  create: FilesFields_height_Create
-  read: FilesFields_height_Read
-  update: FilesFields_height_Update
-  delete: FilesFields_height_Delete
-}
-
-type FilesFields_height_Create {
-  permission: Boolean!
-}
-
-type FilesFields_height_Read {
-  permission: Boolean!
-}
-
-type FilesFields_height_Update {
-  permission: Boolean!
-}
-
-type FilesFields_height_Delete {
-  permission: Boolean!
-}
-
-type FilesFields_focalX {
-  create: FilesFields_focalX_Create
-  read: FilesFields_focalX_Read
-  update: FilesFields_focalX_Update
-  delete: FilesFields_focalX_Delete
-}
-
-type FilesFields_focalX_Create {
-  permission: Boolean!
-}
-
-type FilesFields_focalX_Read {
-  permission: Boolean!
-}
-
-type FilesFields_focalX_Update {
-  permission: Boolean!
-}
-
-type FilesFields_focalX_Delete {
-  permission: Boolean!
-}
-
-type FilesFields_focalY {
-  create: FilesFields_focalY_Create
-  read: FilesFields_focalY_Read
-  update: FilesFields_focalY_Update
-  delete: FilesFields_focalY_Delete
-}
-
-type FilesFields_focalY_Create {
-  permission: Boolean!
-}
-
-type FilesFields_focalY_Read {
-  permission: Boolean!
-}
-
-type FilesFields_focalY_Update {
-  permission: Boolean!
-}
-
-type FilesFields_focalY_Delete {
-  permission: Boolean!
-}
-
-type FilesCreateAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type FilesReadAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type FilesUpdateAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type FilesDeleteAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
 type test_resultsAccess {
   fields: Test_resultsFields
   create: Test_resultsCreateAccess
@@ -10320,9 +9798,6 @@ type Mutation {
   createU_coach(data: mutationU_coachInput!): U_coach
   updateU_coach(id: String!, autosave: Boolean, data: mutationU_coachUpdateInput!): U_coach
   deleteU_coach(id: String!): U_coach
-  createFile(data: mutationFileInput!): File
-  updateFile(id: String!, autosave: Boolean, data: mutationFileUpdateInput!): File
-  deleteFile(id: String!): File
   createTest_result(data: mutationTest_resultInput!): Test_result
   updateTest_result(id: String!, autosave: Boolean, data: mutationTest_resultUpdateInput!): Test_result
   deleteTest_result(id: String!): Test_result
@@ -10465,7 +9940,10 @@ enum PostUpdate__status_MutationInput {
 }
 
 input mutationMediaInput {
-  alt: String!
+  title: String!
+  date: String!
+  user: String
+  alt: String
   caption: JSON
   updatedAt: String
   createdAt: String
@@ -10480,6 +9958,9 @@ input mutationMediaInput {
 }
 
 input mutationMediaUpdateInput {
+  title: String
+  date: String
+  user: String
   alt: String
   caption: JSON
   updatedAt: String
@@ -10669,38 +10150,6 @@ input mutationU_coachUpdateInput {
   athletes: [String]
   updatedAt: String
   createdAt: String
-}
-
-input mutationFileInput {
-  title: String!
-  date: String!
-  user: String
-  updatedAt: String
-  createdAt: String
-  url: String
-  filename: String
-  mimeType: String
-  filesize: Float
-  width: Float
-  height: Float
-  focalX: Float
-  focalY: Float
-}
-
-input mutationFileUpdateInput {
-  title: String
-  date: String
-  user: String
-  updatedAt: String
-  createdAt: String
-  url: String
-  filename: String
-  mimeType: String
-  filesize: Float
-  width: Float
-  height: Float
-  focalX: Float
-  focalY: Float
 }
 
 input mutationTest_resultInput {

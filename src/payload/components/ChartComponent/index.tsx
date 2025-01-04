@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import {
+  ResponsiveContainer,
   BarChart,
   Bar,
   XAxis,
@@ -7,44 +8,44 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer,
 } from 'recharts'
-
+import ExcelParser from '../ExcelParser'
 import { useTestResultsQuery } from '../../api/hooks/test-results'
+import type { Media } from '../../payload-types'
 
 const ChartComponent: React.FC = () => {
-  const {
-    data: testResults,
-    /*isLoading,
-    isFetching,
-    isError,
-    error,*/
-  } = useTestResultsQuery({ limit: 5 })
-  console.log(testResults?.docs[0])
+  const [parsedData, setParsedData] = useState<any[]>([])
 
-  // Sample data for the bar chart
-  const data = [
-    { name: 'January', value: 65 },
-    { name: 'February', value: 59 },
-    { name: 'March', value: 80 },
-    { name: 'April', value: 81 },
-    { name: 'May', value: 56 },
-    { name: 'June', value: 55 },
-    { name: 'July', value: 40 },
-  ]
+  const { data: testResults } = useTestResultsQuery({ limit: 5 })
+
+  const fileUrl = (testResults?.docs[0].resultData as Media)?.url
+
+  const handleParse = useCallback((data: any[]) => {
+    setParsedData(data)
+  }, [])
 
   return (
-    <div style={{ width: '100%', height: 300 }}>
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="value" fill="#8884d8" />
-        </BarChart>
-      </ResponsiveContainer>
+    <div>
+      {/* Render ExcelParser to parse data */}
+      {fileUrl && <ExcelParser fileUrl={fileUrl} onParse={handleParse} />}
+
+      {/* Render the chart only if there is parsed data */}
+      {parsedData.length > 0 ? (
+        <div style={{ width: '100%', height: 300 }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={parsedData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="value" fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      ) : (
+        <p>Loading chart data...</p>
+      )}
     </div>
   )
 }

@@ -22,7 +22,7 @@ const UAthlete: CollectionConfig = {
     create: anyone,
     update: ({ req: { user } }) => checkRole(['user'], user),
     delete: admins,
-    admin: ({ req: { user } }) => checkRole(['admin'], user),
+    //admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   fields: [
     {

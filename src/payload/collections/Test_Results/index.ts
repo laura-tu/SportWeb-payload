@@ -45,7 +45,7 @@ const TestResults: CollectionConfig = {
               type: 'upload',
               label: translate('fields.resultData'), // This will store the Excel/Text file
               required: true,
-              relationTo: 'files', // Store the file in the 'files' collection (Payload's default)
+              relationTo: 'media',
               admin: {
                 description: translate('fields.resultDescription'),
               },

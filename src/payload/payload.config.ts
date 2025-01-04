@@ -24,7 +24,6 @@ import CSportClub from './collections/C_SportClub'
 import UAthlete from './collections/UAthlete'
 import UCoach from './collections/UCoach'
 
-import Files from './collections/Files'
 import TestResults from './collections/Test_Results'
 
 import { i18nConfig } from '../payload/utils/translations'
@@ -71,18 +70,7 @@ export default buildConfig({
     url: process.env.DATABASE_URI,
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [
-    Posts,
-    Media,
-    Categories,
-    Users,
-    CSport,
-    CSportClub,
-    UAthlete,
-    UCoach,
-    Files,
-    TestResults,
-  ],
+  collections: [Posts, Media, Categories, Users, CSport, CSportClub, UAthlete, UCoach, TestResults],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
