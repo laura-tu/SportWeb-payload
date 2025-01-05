@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
-import { checkRole } from '../Users/checkRole'
+//import { checkRole } from '../Users/checkRole'
 import { anyone } from '../../access/anyone'
 import { tCollection } from '../../utils/translations'
 
@@ -13,7 +13,7 @@ const UCoach: CollectionConfig = {
     plural: translate('labels.plural'),
   },
   admin: {
-    useAsTitle: 'user',
+    useAsTitle: 'name',
     defaultColumns: ['user', 'sport', 'club'],
     group: 'Ľudia',
   },
@@ -21,9 +21,9 @@ const UCoach: CollectionConfig = {
     read: anyone,
     create: anyone,
     //update: ({ req: { user } }) => checkRole(['sportCoach'], user),
-    update: anyone,
+    update: admins,
     delete: admins,
-   // admin: ({ req: { user } }) => checkRole(['admin'], user),
+    // admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   fields: [
     {
@@ -33,7 +33,6 @@ const UCoach: CollectionConfig = {
       relationTo: 'users',
       admin: {
         position: 'sidebar',
-        /* readOnly: true,*/
       },
       hooks: {
         beforeValidate: [

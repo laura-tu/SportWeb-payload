@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
-import { checkRole } from '../Users/checkRole'
+//import { checkRole } from '../Users/checkRole'
 import { anyone } from '../../access/anyone'
 import { tCollection } from '../../utils/translations'
 
@@ -13,14 +13,15 @@ const UAthlete: CollectionConfig = {
     plural: translate('labels.plural'),
   },
   admin: {
-    useAsTitle: 'user',
+    useAsTitle: 'name',
     defaultColumns: ['user', 'sport', 'club'],
     group: 'Ľudia',
   },
   access: {
     read: anyone,
     create: anyone,
-    update: ({ req: { user } }) => checkRole(['user'], user),
+    /*update: ({ req: { user } }) => checkRole(['user'], user),*/
+    update: admins,
     delete: admins,
     //admin: ({ req: { user } }) => checkRole(['admin'], user),
   },

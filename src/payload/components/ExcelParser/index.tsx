@@ -38,20 +38,43 @@ const ExcelParser: React.FC<ExcelParserProps> = ({ fileUrl, onParse }) => {
         const sheet = workbook.Sheets[sheetName]
         const jsonData = XLSX.utils.sheet_to_json<ParsedData>(sheet)
 
-        setData(jsonData)
-        onParse(jsonData)
+        // Filter out columns with all values as '-'
+        const validKeys = Object.keys(jsonData[0] || {}).filter(key =>
+          jsonData.some(row => row[key] !== '-' && row[key] !== ' '),
+        )
+
+        const filteredData = jsonData
+          .map(row => {
+            const filteredRow: ParsedData = {}
+            validKeys.forEach(key => {
+              filteredRow[key] = row[key]
+            })
+            return filteredRow
+          })
+          .filter(row => {
+            return Object.values(row).some(
+              value =>
+                value !== '-' &&
+                value !== ' ' &&
+                value !== null &&
+                value !== undefined &&
+                value !== '',
+            )
+          })
+
+        setData(filteredData)
+        onParse(filteredData)
 
         // Dynamically create columns
-        if (jsonData.length > 0) {
-          const keys = Object.keys(jsonData[0])
-          const generatedColumns = keys.map(key => ({
+        if (filteredData.length > 0) {
+          const generatedColumns = validKeys.map(key => ({
             accessor: key,
             active: true,
             components: {
-              Heading: <>{key}</>,
+              Heading: <>{key}</>, // Column heading
               renderCell: (row: ParsedData) => {
-                if (key === 'dátum narodenia') {//CHANGE
-                  
+                // Customize cell rendering for specific keys
+                if (key === 'dátum narodenia') {
                   const date = new Date(row[key] as string)
                   return <>{isNaN(date.getTime()) ? row[key] : format(date, 'dd.MM.yyyy')}</>
                 }
@@ -61,6 +84,8 @@ const ExcelParser: React.FC<ExcelParserProps> = ({ fileUrl, onParse }) => {
             label: key,
             name: key,
           }))
+
+          console.log('Generated Columns:', generatedColumns) // Debug columns
           setColumns(generatedColumns)
         }
 
