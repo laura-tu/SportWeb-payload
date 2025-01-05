@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'recharts'
-import ExcelParser from '../ExcelParser'
+import ExcelCsvParser from '../ExcelParser'
 import { useTestResultsQuery } from '../../api/hooks/test-results'
 import type { Media } from '../../payload-types'
 
@@ -26,10 +26,9 @@ const ChartComponent: React.FC = () => {
 
   return (
     <div>
-      {/* Render ExcelParser to parse data */}
-      {fileUrl && <ExcelParser fileUrl={fileUrl} onParse={handleParse} />}
+      {fileUrl && <ExcelCsvParser fileUrl={fileUrl} onParse={handleParse} />}
 
-      {/* Render the chart only if there is parsed data */}
+      {/* Render the chart only if there is parsed data 
       {parsedData.length > 0 ? (
         <div style={{ width: '100%', height: 300 }}>
           <ResponsiveContainer width="100%" height="100%">
@@ -45,7 +44,7 @@ const ChartComponent: React.FC = () => {
         </div>
       ) : (
         <p>Loading chart data...</p>
-      )}
+      )}*/}
     </div>
   )
 }
