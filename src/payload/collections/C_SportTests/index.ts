@@ -14,6 +14,7 @@ const CSportTest: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
+    defaultColumns: ['name', 'short_name'],
     group: 'Číselníky',
   },
   access: {

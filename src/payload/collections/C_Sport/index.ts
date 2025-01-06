@@ -14,6 +14,7 @@ const CSport: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
+    defaultColumns: ['name', 'info'],
     group: 'Číselníky',
   },
   access: {

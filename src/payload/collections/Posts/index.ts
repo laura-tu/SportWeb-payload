@@ -8,7 +8,6 @@ import { Content } from '../../blocks/Content'
 import { MediaBlock } from '../../blocks/MediaBlock'
 import { hero } from '../../fields/hero'
 import { slugField } from '../../fields/slug'
-import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { populateAuthors } from './hooks/populateAuthors'
 import { revalidatePost } from './hooks/revalidatePost'
@@ -27,7 +26,7 @@ export const Posts: CollectionConfig = {
   hooks: {
     beforeChange: [populatePublishedAt],
     afterChange: [revalidatePost],
-    afterRead: [populateArchiveBlock, populateAuthors],
+    afterRead: [populateAuthors],
   },
   versions: {
     drafts: true,

@@ -273,7 +273,7 @@ export interface TestResult {
   id: string;
   athlete: string | UAthlete;
   coach?: (string | null) | UCoach;
-  testType: string;
+  testType: string | CSportTest;
   resultData: string | Media;
   date: string;
   notes?: string | null;

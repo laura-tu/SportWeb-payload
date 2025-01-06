@@ -5653,10 +5653,19 @@ type Test_result {
   id: String
   athlete: U_athlete!
   coach: U_coach
-  testType: String!
+  testType: C_sport_test!
   resultData(where: Test_result_ResultData_where): Media!
   date: DateTime!
   notes: String
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type C_sport_test {
+  id: String
+  name: String!
+  short_name: String!
+  description: String
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -5934,13 +5943,11 @@ input Test_result_coach_operator {
 }
 
 input Test_result_testType_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
 }
 
 input Test_result_resultData_operator {
@@ -6252,15 +6259,6 @@ type Test_resultsUpdateDocAccess {
 type Test_resultsDeleteDocAccess {
   permission: Boolean!
   where: JSONObject
-}
-
-type C_sport_test {
-  id: String
-  name: String!
-  short_name: String!
-  description: String
-  updatedAt: DateTime
-  createdAt: DateTime
 }
 
 type C_sport_tests {
@@ -10586,7 +10584,7 @@ input mutationU_coachUpdateInput {
 input mutationTest_resultInput {
   athlete: String
   coach: String
-  testType: String!
+  testType: String
   resultData: String!
   date: String!
   notes: String

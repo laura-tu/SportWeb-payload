@@ -1,6 +1,9 @@
 import { CollectionConfig } from 'payload/types'
 import { tCollection } from '../../utils/translations'
 import ChartComponent from '../../components/ChartComponent'
+import { admins } from '../../access/admins'
+import { anyone } from '../../access/anyone'
+import { checkRole } from '../Users/checkRole'
 
 const translate = tCollection('test_results')
 
@@ -9,6 +12,17 @@ const TestResults: CollectionConfig = {
   labels: {
     singular: translate('labels.singular'),
     plural: translate('labels.plural'),
+  },
+  access: {
+    read: anyone,
+    create: admins,
+    update: admins,
+    delete: admins,
+    admin: ({ req: { user } }) => checkRole(['admin'], user),
+  },
+  admin: {
+    useAsTitle: 'testType',
+    defaultColumns: ['date', 'athlete', 'testType'],
   },
   fields: [
     {
@@ -28,15 +42,9 @@ const TestResults: CollectionConfig = {
               label: translate('fields.athlete'),
             },
             {
-              name: 'coach',
-              type: 'relationship',
-              relationTo: 'u_coach',
-              label: translate('fields.coach'),
-              required: false,
-            },
-            {
               name: 'testType',
-              type: 'text',
+              type: 'relationship',
+              relationTo: 'c_sport_test',
               label: translate('fields.testType'),
               required: true,
             },
@@ -48,6 +56,15 @@ const TestResults: CollectionConfig = {
               relationTo: 'media',
               admin: {
                 description: translate('fields.resultDescription'),
+              },
+              filterOptions: {
+                mimeType: {
+                  in: [
+                    'application/pdf',
+                    'text/csv',
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                  ],
+                },
               },
             },
             {
