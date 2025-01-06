@@ -39,6 +39,10 @@ type Query {
   Test_results(where: Test_result_where, limit: Int, page: Int, sort: String): Test_results
   countTest_results(where: Test_result_where): countTest_results
   docAccessTest_result(id: String!): test_resultsDocAccess
+  C_sport_test(id: String!): C_sport_test
+  C_sport_tests(where: C_sport_test_where, limit: Int, page: Int, sort: String): C_sport_tests
+  countC_sport_tests(where: C_sport_test_where): countC_sport_tests
+  docAccessC_sport_test(id: String!): c_sport_testDocAccess
   Redirect(id: String!): Redirect
   Redirects(where: Redirect_where, limit: Int, page: Int, sort: String): Redirects
   countRedirects(where: Redirect_where): countRedirects
@@ -6250,6 +6254,278 @@ type Test_resultsDeleteDocAccess {
   where: JSONObject
 }
 
+type C_sport_test {
+  id: String
+  name: String!
+  short_name: String!
+  description: String
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type C_sport_tests {
+  docs: [C_sport_test]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input C_sport_test_where {
+  name: C_sport_test_name_operator
+  short_name: C_sport_test_short_name_operator
+  description: C_sport_test_description_operator
+  updatedAt: C_sport_test_updatedAt_operator
+  createdAt: C_sport_test_createdAt_operator
+  id: C_sport_test_id_operator
+  AND: [C_sport_test_where_and]
+  OR: [C_sport_test_where_or]
+}
+
+input C_sport_test_name_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input C_sport_test_short_name_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input C_sport_test_description_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  exists: Boolean
+}
+
+input C_sport_test_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input C_sport_test_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input C_sport_test_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input C_sport_test_where_and {
+  name: C_sport_test_name_operator
+  short_name: C_sport_test_short_name_operator
+  description: C_sport_test_description_operator
+  updatedAt: C_sport_test_updatedAt_operator
+  createdAt: C_sport_test_createdAt_operator
+  id: C_sport_test_id_operator
+  AND: [C_sport_test_where_and]
+  OR: [C_sport_test_where_or]
+}
+
+input C_sport_test_where_or {
+  name: C_sport_test_name_operator
+  short_name: C_sport_test_short_name_operator
+  description: C_sport_test_description_operator
+  updatedAt: C_sport_test_updatedAt_operator
+  createdAt: C_sport_test_createdAt_operator
+  id: C_sport_test_id_operator
+  AND: [C_sport_test_where_and]
+  OR: [C_sport_test_where_or]
+}
+
+type countC_sport_tests {
+  totalDocs: Int
+}
+
+type c_sport_testDocAccess {
+  fields: C_sport_testDocAccessFields
+  create: C_sport_testCreateDocAccess
+  read: C_sport_testReadDocAccess
+  update: C_sport_testUpdateDocAccess
+  delete: C_sport_testDeleteDocAccess
+}
+
+type C_sport_testDocAccessFields {
+  name: C_sport_testDocAccessFields_name
+  short_name: C_sport_testDocAccessFields_short_name
+  description: C_sport_testDocAccessFields_description
+  updatedAt: C_sport_testDocAccessFields_updatedAt
+  createdAt: C_sport_testDocAccessFields_createdAt
+}
+
+type C_sport_testDocAccessFields_name {
+  create: C_sport_testDocAccessFields_name_Create
+  read: C_sport_testDocAccessFields_name_Read
+  update: C_sport_testDocAccessFields_name_Update
+  delete: C_sport_testDocAccessFields_name_Delete
+}
+
+type C_sport_testDocAccessFields_name_Create {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_name_Read {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_name_Update {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_short_name {
+  create: C_sport_testDocAccessFields_short_name_Create
+  read: C_sport_testDocAccessFields_short_name_Read
+  update: C_sport_testDocAccessFields_short_name_Update
+  delete: C_sport_testDocAccessFields_short_name_Delete
+}
+
+type C_sport_testDocAccessFields_short_name_Create {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_short_name_Read {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_short_name_Update {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_short_name_Delete {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_description {
+  create: C_sport_testDocAccessFields_description_Create
+  read: C_sport_testDocAccessFields_description_Read
+  update: C_sport_testDocAccessFields_description_Update
+  delete: C_sport_testDocAccessFields_description_Delete
+}
+
+type C_sport_testDocAccessFields_description_Create {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_description_Read {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_description_Update {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_description_Delete {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_updatedAt {
+  create: C_sport_testDocAccessFields_updatedAt_Create
+  read: C_sport_testDocAccessFields_updatedAt_Read
+  update: C_sport_testDocAccessFields_updatedAt_Update
+  delete: C_sport_testDocAccessFields_updatedAt_Delete
+}
+
+type C_sport_testDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_createdAt {
+  create: C_sport_testDocAccessFields_createdAt_Create
+  read: C_sport_testDocAccessFields_createdAt_Read
+  update: C_sport_testDocAccessFields_createdAt_Update
+  delete: C_sport_testDocAccessFields_createdAt_Delete
+}
+
+type C_sport_testDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type C_sport_testDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type C_sport_testCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type C_sport_testReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type C_sport_testUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type C_sport_testDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type Redirect {
   id: String
   from: String!
@@ -6908,6 +7184,7 @@ type Access {
   u_athlete: u_athleteAccess
   u_coach: u_coachAccess
   test_results: test_resultsAccess
+  c_sport_test: c_sport_testAccess
   redirects: redirectsAccess
   payload_preferences: payload_preferencesAccess
 }
@@ -9411,6 +9688,157 @@ type Test_resultsDeleteAccess {
   where: JSONObject
 }
 
+type c_sport_testAccess {
+  fields: C_sport_testFields
+  create: C_sport_testCreateAccess
+  read: C_sport_testReadAccess
+  update: C_sport_testUpdateAccess
+  delete: C_sport_testDeleteAccess
+}
+
+type C_sport_testFields {
+  name: C_sport_testFields_name
+  short_name: C_sport_testFields_short_name
+  description: C_sport_testFields_description
+  updatedAt: C_sport_testFields_updatedAt
+  createdAt: C_sport_testFields_createdAt
+}
+
+type C_sport_testFields_name {
+  create: C_sport_testFields_name_Create
+  read: C_sport_testFields_name_Read
+  update: C_sport_testFields_name_Update
+  delete: C_sport_testFields_name_Delete
+}
+
+type C_sport_testFields_name_Create {
+  permission: Boolean!
+}
+
+type C_sport_testFields_name_Read {
+  permission: Boolean!
+}
+
+type C_sport_testFields_name_Update {
+  permission: Boolean!
+}
+
+type C_sport_testFields_name_Delete {
+  permission: Boolean!
+}
+
+type C_sport_testFields_short_name {
+  create: C_sport_testFields_short_name_Create
+  read: C_sport_testFields_short_name_Read
+  update: C_sport_testFields_short_name_Update
+  delete: C_sport_testFields_short_name_Delete
+}
+
+type C_sport_testFields_short_name_Create {
+  permission: Boolean!
+}
+
+type C_sport_testFields_short_name_Read {
+  permission: Boolean!
+}
+
+type C_sport_testFields_short_name_Update {
+  permission: Boolean!
+}
+
+type C_sport_testFields_short_name_Delete {
+  permission: Boolean!
+}
+
+type C_sport_testFields_description {
+  create: C_sport_testFields_description_Create
+  read: C_sport_testFields_description_Read
+  update: C_sport_testFields_description_Update
+  delete: C_sport_testFields_description_Delete
+}
+
+type C_sport_testFields_description_Create {
+  permission: Boolean!
+}
+
+type C_sport_testFields_description_Read {
+  permission: Boolean!
+}
+
+type C_sport_testFields_description_Update {
+  permission: Boolean!
+}
+
+type C_sport_testFields_description_Delete {
+  permission: Boolean!
+}
+
+type C_sport_testFields_updatedAt {
+  create: C_sport_testFields_updatedAt_Create
+  read: C_sport_testFields_updatedAt_Read
+  update: C_sport_testFields_updatedAt_Update
+  delete: C_sport_testFields_updatedAt_Delete
+}
+
+type C_sport_testFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type C_sport_testFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type C_sport_testFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type C_sport_testFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type C_sport_testFields_createdAt {
+  create: C_sport_testFields_createdAt_Create
+  read: C_sport_testFields_createdAt_Read
+  update: C_sport_testFields_createdAt_Update
+  delete: C_sport_testFields_createdAt_Delete
+}
+
+type C_sport_testFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type C_sport_testFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type C_sport_testFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type C_sport_testFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type C_sport_testCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type C_sport_testReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type C_sport_testUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type C_sport_testDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type redirectsAccess {
   fields: RedirectsFields
   create: RedirectsCreateAccess
@@ -9801,6 +10229,9 @@ type Mutation {
   createTest_result(data: mutationTest_resultInput!): Test_result
   updateTest_result(id: String!, autosave: Boolean, data: mutationTest_resultUpdateInput!): Test_result
   deleteTest_result(id: String!): Test_result
+  createC_sport_test(data: mutationC_sport_testInput!): C_sport_test
+  updateC_sport_test(id: String!, autosave: Boolean, data: mutationC_sport_testUpdateInput!): C_sport_test
+  deleteC_sport_test(id: String!): C_sport_test
   createRedirect(data: mutationRedirectInput!): Redirect
   updateRedirect(id: String!, autosave: Boolean, data: mutationRedirectUpdateInput!): Redirect
   deleteRedirect(id: String!): Redirect
@@ -10170,6 +10601,22 @@ input mutationTest_resultUpdateInput {
   resultData: String
   date: String
   notes: String
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationC_sport_testInput {
+  name: String!
+  short_name: String!
+  description: String
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationC_sport_testUpdateInput {
+  name: String
+  short_name: String
+  description: String
   updatedAt: String
   createdAt: String
 }

@@ -63,12 +63,23 @@
     "c_sport_club": {
         "labels": {
             "singular": "Číselník športového klubu",
-            "plural": "Číselník športových klubov"
+            "plural": "Číselníky športových klubov"
         },
         "fields": {
             "name": "Názov",
             "short_name": "Skratka športového klubu",
             "sport": "Šport"
+        }
+    },
+    "c_sport_test": {
+        "labels": {
+            "singular": "Číselník športových testov",
+            "plural": "Číselníky športových testov"
+        },
+        "fields": {
+            "name": "Názov",
+            "short_name": "Skratka",
+            "description": "Popis"
         }
     },
     "test_results": {

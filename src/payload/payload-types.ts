@@ -17,6 +17,7 @@ export interface Config {
     u_athlete: UAthlete;
     u_coach: UCoach;
     test_results: TestResult;
+    c_sport_test: CSportTest;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -276,6 +277,18 @@ export interface TestResult {
   resultData: string | Media;
   date: string;
   notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "c_sport_test".
+ */
+export interface CSportTest {
+  id: string;
+  name: string;
+  short_name: string;
+  description?: string | null;
   updatedAt: string;
   createdAt: string;
 }
