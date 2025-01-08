@@ -4,6 +4,9 @@ import ChartComponent from '../../components/ChartComponent'
 import { admins } from '../../access/admins'
 import { anyone } from '../../access/anyone'
 import { checkRole } from '../Users/checkRole'
+import format from 'date-fns/format'
+import { dateDisplayFormat } from '../../constants'
+import Field from 'payload/types'
 
 const translate = tCollection('test_results')
 
@@ -72,6 +75,13 @@ const TestResults: CollectionConfig = {
               type: 'date',
               label: translate('fields.date'),
               required: true,
+              defaultValue: new Date().toISOString(),
+              admin: {
+                date: {
+                  pickerAppearance: 'dayOnly',
+                  displayFormat: dateDisplayFormat.sk,
+                },
+              },
             },
             {
               name: 'notes',

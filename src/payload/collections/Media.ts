@@ -2,6 +2,7 @@ import { slateEditor } from '@payloadcms/richtext-slate'
 import path from 'path'
 import type { CollectionConfig } from 'payload/types'
 import { tCollection } from '../utils/translations'
+import { dateDisplayFormat } from '../constants'
 
 const translate = tCollection('media')
 
@@ -25,6 +26,13 @@ export const Media: CollectionConfig = {
       type: 'date',
       label: translate('fields.date'),
       required: true,
+      defaultValue: new Date().toISOString(),
+      admin: {
+        date: {
+          pickerAppearance: 'dayOnly',
+          displayFormat: dateDisplayFormat.sk,
+        },
+      },
     },
     {
       name: 'user',
