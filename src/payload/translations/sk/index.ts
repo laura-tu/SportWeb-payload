@@ -7,6 +7,7 @@ import operators from './operators.json'
 import validation from './validation.json'
 import version from './version.json'
 import upload from './upload.json'
+import emails from './emails.json'
 
 export default {
   collections,
@@ -17,5 +18,6 @@ export default {
   operators,
   validation,
   version,
-  upload
+  upload,
+  emails,
 }

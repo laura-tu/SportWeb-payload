@@ -13,6 +13,7 @@ export enum Namespaces {
   OPERATORS = 'operators',
   VALIDATION = 'validation',
   VERSION = 'version',
+  EMAILS = 'emails',
 }
 
 const FALLBACK_LNG = 'sk'

@@ -3,11 +3,14 @@ import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
 import { anyone } from '../../access/anyone'
 import adminsAndUser from './access/adminsAndUser'
-import { checkRole } from './checkRole'
+//import { checkRole } from './checkRole'
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
 import { forgotPassword, forgotPasswordSubject } from './hooks/email'
 import { loginAfterCreate } from './hooks/loginAfterCreate'
 import { tCollection } from '../../utils/translations'
+//import { verify, verifySubject, checkVerification, sendVerifiedEmail } from './hooks/email'
+import { checkUser } from '../../access/checkUser'
+import { Permission } from '../../access/checkPermission'
 
 const translate = tCollection('users')
 
@@ -23,16 +26,24 @@ const Users: CollectionConfig = {
     group: 'Ľudia',
   },
   access: {
-    read: adminsAndUser,
+    read: req => checkUser(req, Permission.READ, 'id'),
     create: anyone,
     update: adminsAndUser,
     delete: admins,
-    admin: ({ req: { user } }) => checkRole(['admin'], user),
+    admin: () => true,
   },
   hooks: {
     afterChange: [loginAfterCreate],
   },
+  /*hooks: {
+    afterChange: [sendVerifiedEmail],
+    beforeChange: [checkVerification],
+  },*/
   auth: {
+    /*verify: {
+      generateEmailHTML: verify,
+      generateEmailSubject: verifySubject,
+    },*/
     forgotPassword: {
       generateEmailHTML: forgotPassword,
       generateEmailSubject: forgotPasswordSubject,

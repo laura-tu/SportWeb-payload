@@ -1,0 +1,21 @@
+{
+    "signup": {
+        "subject": "Vitajte!",
+        "login": "login",
+        "signup": "signup",
+        "body": "<div><h1 style=\"font-size: 28px; font-weight: 700; color:black; opacity: 0.6; margin-bottom: 0.5rem;\">Gratulujeme!</h1><p style=\"color: black;\">Prvý krok k svojej elektronickej zbierke mincí máte za sebou.</p><p style=\"color: black;\">Účet sme Vám vytvorili a aktívny bude po potvrdení emailu vo vašej schránke:</p><p style=\"color: black !important; text-decoration: none !important; font-size: 20px; font-weight: 500;\">{{ email }}</p><p style=\"color: black;\">Po potvrdení sa budete môcť prihlásiť a začať kreovať Vašu súkromnú zbierku mincí.</p><a href={{ login }} style=\"text-decoration: none; color:white; width: min-content;\"><p style=\"background-color: rgba(71, 134, 105, 1); width: min-content; white-space: nowrap; padding: 1rem 4rem; color: white; font-weight: 600; border-radius: 4px; margin: 1rem 0;\">Prihlásiť sa</p></a><p style=\"color: black;\">Potrebujete ešte jeden účet? <a href={{ signup }}>{{ signup }}</a></p></div>"
+    },
+    "verify": {
+        "subject": "Overenie prihlásenia",
+        "link": "signup?verify={{ token }}",
+        "body": "<div><img src={{ image }} width=\"231px\" alt=\"logo\" /><h1 style=\"font-size: 28px; margin-top:3rem; color:black; font-weight: 700; opacity: 0.6; margin-bottom: 0.5rem;\">Potvrďte registráciu</h1><p style=\"color:black;\">Ďakujeme za registráciu! Teraz už len potvrdiť a môžeme zacať.</p><p style=\"background-color: rgba(250, 204, 21, 1); width: min-content; white-space: nowrap; padding: 1rem 4rem; color: white; font-weight: 600; border-radius: 4px; margin: 1rem 0;\"><a href={{ link }} style=\"text-decoration: none; color:white; width: min-content;\">Potvrdiť email</a></p><div><p style=\"color:black;\">Ak vám tlačidlo vyššie nefunguje, skopírujte tento odkaz do Vášho prehliadača.</p><a href={{ link }}>{{ link }}</a></div><p style=\"color:black;\">Ak ste sa na stránke {{ url }} neregistrovali, prosím, ignorujte túto správu.</p><div><p style=\"color:black;\">Tešíme sa s Vami,</p><p style=\"color:black;\">tím ZbierkaMincí</p></div><p style=\"font-size: 12px; margin-top: 3rem; color:black;\">© 2024 ZbierkaMinci. Všetky práva vyhradené.</p></div>"
+    },
+    "alreadyVerified": {
+        "body": "<div>Vitajte!</div>"
+    },
+    "forgotPassword": {
+        "subject": "Zabudnuté heslo",
+        "link": "login?reset-password={{ token }}",
+        "body": "<div>Pre resetovanie hesla prosím kliknite na link nižšie. </br> {{ link }}</div>"
+    }
+}
