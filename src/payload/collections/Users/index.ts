@@ -3,14 +3,14 @@ import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
 import { anyone } from '../../access/anyone'
 import adminsAndUser from './access/adminsAndUser'
-//import { checkRole } from './checkRole'
+import { checkRole } from './checkRole'
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
 import { forgotPassword, forgotPasswordSubject } from './hooks/email'
 import { loginAfterCreate } from './hooks/loginAfterCreate'
 import { tCollection } from '../../utils/translations'
 //import { verify, verifySubject, checkVerification, sendVerifiedEmail } from './hooks/email'
-import { checkUser } from '../../access/checkUser'
-import { Permission } from '../../access/checkPermission'
+//import { checkUser } from '../../access/checkUser'
+//import { Permission } from '../../access/checkPermission'
 
 const translate = tCollection('users')
 
@@ -26,11 +26,11 @@ const Users: CollectionConfig = {
     group: 'Ľudia',
   },
   access: {
-    read: req => checkUser(req, Permission.READ, 'id'),
+    read: adminsAndUser,
     create: anyone,
     update: adminsAndUser,
     delete: admins,
-    admin: () => true,
+    admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   hooks: {
     afterChange: [loginAfterCreate],
