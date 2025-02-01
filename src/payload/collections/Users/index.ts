@@ -3,7 +3,7 @@ import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
 import { anyone } from '../../access/anyone'
 import adminsAndUser from './access/adminsAndUser'
-import { checkRole } from './checkRole'
+//import { checkRole } from './checkRole'
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
 import { forgotPassword, forgotPasswordSubject } from './hooks/email'
 import { loginAfterCreate } from './hooks/loginAfterCreate'
@@ -30,7 +30,8 @@ const Users: CollectionConfig = {
     create: anyone,
     update: adminsAndUser,
     delete: admins,
-    admin: ({ req: { user } }) => checkRole(['admin'], user),
+    // only users with the "admin" role will be able to see or manage this collection in the Payload admin dashboard
+    //admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   hooks: {
     afterChange: [loginAfterCreate],

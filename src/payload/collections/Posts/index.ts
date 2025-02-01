@@ -11,6 +11,7 @@ import { slugField } from '../../fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { populateAuthors } from './hooks/populateAuthors'
 import { revalidatePost } from './hooks/revalidatePost'
+import { checkRole } from '../Users/checkRole'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -36,6 +37,8 @@ export const Posts: CollectionConfig = {
     update: admins,
     create: admins,
     delete: admins,
+    // only users with the "admin" role will be able to see or manage this collection in the Payload admin dashboard
+    admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   fields: [
     {

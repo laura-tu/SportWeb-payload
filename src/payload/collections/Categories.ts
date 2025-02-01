@@ -1,4 +1,6 @@
 import type { CollectionConfig } from 'payload/types'
+import { admins } from '../access/admins'
+import { checkRole } from './Users/checkRole'
 
 const Categories: CollectionConfig = {
   slug: 'categories',
@@ -6,7 +8,9 @@ const Categories: CollectionConfig = {
     useAsTitle: 'title',
   },
   access: {
-    read: () => true,
+    read: admins,
+    // only users with the "admin" role will be able to see or manage this collection in the Payload admin dashboard
+    admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   fields: [
     {

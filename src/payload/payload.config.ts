@@ -2,7 +2,7 @@ import { webpackBundler } from '@payloadcms/bundler-webpack'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { payloadCloud } from '@payloadcms/plugin-cloud'
 import nestedDocs from '@payloadcms/plugin-nested-docs'
-import redirects from '@payloadcms/plugin-redirects'
+//import redirects from '@payloadcms/plugin-redirects'
 import seo from '@payloadcms/plugin-seo'
 import type { GenerateTitle } from '@payloadcms/plugin-seo/types'
 import { slateEditor } from '@payloadcms/richtext-slate'
@@ -101,9 +101,9 @@ export default buildConfig({
     },
   ],
   plugins: [
-    redirects({
+    /*redirects({
       collections: ['posts'],
-    }),
+    }),*/
     nestedDocs({
       collections: ['categories'],
     }),

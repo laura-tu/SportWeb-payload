@@ -18,7 +18,7 @@ const CSport: CollectionConfig = {
     group: 'Číselníky',
   },
   access: {
-    read: anyone,
+    read: admins,
     create: admins,
     update: admins,
     delete: admins,

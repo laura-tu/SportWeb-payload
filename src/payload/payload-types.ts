@@ -18,7 +18,6 @@ export interface Config {
     u_coach: UCoach;
     test_results: TestResult;
     c_sport_test: CSportTest;
-    redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -272,7 +271,6 @@ export interface UCoach {
 export interface TestResult {
   id: string;
   athlete: string | UAthlete;
-  coach?: (string | null) | UCoach;
   testType: string | CSportTest;
   resultData: string | Media;
   date: string;
@@ -289,24 +287,6 @@ export interface CSportTest {
   name: string;
   short_name: string;
   description?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects".
- */
-export interface Redirect {
-  id: string;
-  from: string;
-  to?: {
-    type?: ('reference' | 'custom') | null;
-    reference?: {
-      relationTo: 'posts';
-      value: string | Post;
-    } | null;
-    url?: string | null;
-  };
   updatedAt: string;
   createdAt: string;
 }
