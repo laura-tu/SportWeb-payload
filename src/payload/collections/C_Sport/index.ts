@@ -18,11 +18,11 @@ const CSport: CollectionConfig = {
     group: 'Číselníky',
   },
   access: {
-    read: admins,
+    read: anyone,
     create: admins,
     update: admins,
     delete: admins,
-    admin: ({ req: { user } }) => checkRole(['admin'], user),
+   // admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   fields: [
     {

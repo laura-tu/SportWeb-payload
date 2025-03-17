@@ -4,9 +4,6 @@ import type { Payload } from 'payload'
 
 import { image1 } from './image-1'
 import { image2 } from './image-2'
-import { post1 } from './post-1'
-import { post2 } from './post-2'
-import { post3 } from './post-3'
 
 // Next.js revalidation errors are normal when seeding the database without a server running
 // i.e. running `yarn seed` locally instead of using the admin UI within an active app
@@ -82,47 +79,6 @@ export const seed = async (payload: Payload): Promise<void> => {
     }),
   ])
 
-  payload.logger.info(`*Seeding categories...`)
-
-  const [technologyCategory, newsCategory, financeCategory] = await Promise.all([
-    await payload.create({
-      collection: 'categories',
-      data: {
-        title: 'Technology',
-      },
-    }),
-    await payload.create({
-      collection: 'categories',
-      data: {
-        title: 'News',
-      },
-    }),
-    await payload.create({
-      collection: 'categories',
-      data: {
-        title: 'Finance',
-      },
-    }),
-    await payload.create({
-      collection: 'categories',
-      data: {
-        title: 'Design',
-      },
-    }),
-    await payload.create({
-      collection: 'categories',
-      data: {
-        title: 'Software',
-      },
-    }),
-    await payload.create({
-      collection: 'categories',
-      data: {
-        title: 'Engineering',
-      },
-    }),
-  ])
-
   let image1ID: string = String(image1Doc.id)
   let image2ID: string = String(image2Doc.id)
 
@@ -130,69 +86,6 @@ export const seed = async (payload: Payload): Promise<void> => {
     image1ID = `"${image1Doc.id}"`
     image2ID = `"${image2Doc.id}"`
     demoAuthorID = `"${demoAuthorID}"`
-  }
-
-  payload.logger.info(`* Seeding posts...`)
-
-  // Do not create posts with `Promise.all` because we want the posts to be created in order
-  // This way we can sort them by `createdAt` or `publishedAt` and they will be in the expected order
-  const post1Doc = await payload.create({
-    collection: 'posts',
-    data: JSON.parse(
-      JSON.stringify({ ...post1, categories: [technologyCategory.id] })
-        .replace(/"\{\{IMAGE\}\}"/g, image1ID)
-        .replace(/"\{\{AUTHOR\}\}"/g, demoAuthorID),
-    ),
-  })
-
-  const post2Doc = await payload.create({
-    collection: 'posts',
-    data: JSON.parse(
-      JSON.stringify({ ...post2, categories: [newsCategory.id] })
-        .replace(/"\{\{IMAGE\}\}"/g, image1ID)
-        .replace(/"\{\{AUTHOR\}\}"/g, demoAuthorID),
-    ),
-  })
-
-  const post3Doc = await payload.create({
-    collection: 'posts',
-    data: JSON.parse(
-      JSON.stringify({ ...post3, categories: [financeCategory.id] })
-        .replace(/"\{\{IMAGE\}\}"/g, image1ID)
-        .replace(/"\{\{AUTHOR\}\}"/g, demoAuthorID),
-    ),
-  })
-
-  const posts = [post1Doc, post2Doc, post3Doc]
-
-  // update each post with related posts
-
-  try {
-    await Promise.all([
-      await payload.update({
-        collection: 'posts',
-        id: String(post1Doc.id),
-        data: {
-          relatedPosts: [String(post2Doc.id), String(post3Doc.id)],
-        },
-      }),
-      payload.update({
-        collection: 'posts',
-        id: String(post2Doc.id),
-        data: {
-          relatedPosts: [String(post1Doc.id), String(post3Doc.id)],
-        },
-      }),
-      payload.update({
-        collection: 'posts',
-        id: String(post3Doc.id),
-        data: {
-          relatedPosts: [String(post1Doc.id), String(post2Doc.id)],
-        },
-      }),
-    ])
-  } catch (error) {
-    payload.logger.error(`Error creating/updating posts: ${error.message}`)
   }
 
   payload.logger.info('Seeded database successfully!')

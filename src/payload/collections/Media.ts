@@ -14,7 +14,7 @@ export const Media: CollectionConfig = {
     staticDir: path.resolve(__dirname, '../../../media'),
   },
   access: {
-    read: admins,
+    read: () => true,
     // only users with the "admin" role will be able to see or manage this collection in the Payload admin dashboard
     admin: ({ req: { user } }) => checkRole(['admin'], user),
   },

@@ -11,9 +11,7 @@ import path from 'path'
 import { buildConfig } from 'payload/config'
 import QueryProvider from './providers/queryProvider'
 
-import Categories from './collections/Categories'
 import { Media } from './collections/Media'
-import { Posts } from './collections/Posts'
 import Users from './collections/Users'
 import BeforeLogin from './components/BeforeLogin'
 import { seed } from './endpoints/seed'
@@ -71,18 +69,7 @@ export default buildConfig({
     url: process.env.DATABASE_URI,
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [
-    Posts,
-    Media,
-    Categories,
-    Users,
-    CSport,
-    CSportClub,
-    UAthlete,
-    UCoach,
-    TestResults,
-    CSportTest,
-  ],
+  collections: [Media, Users, CSport, CSportClub, UAthlete, UCoach, TestResults, CSportTest],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
