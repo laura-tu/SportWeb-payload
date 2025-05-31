@@ -2,9 +2,6 @@ import fs from 'fs'
 import path from 'path'
 import type { Payload } from 'payload'
 
-import { image1 } from './image-1'
-import { image2 } from './image-2'
-
 // Next.js revalidation errors are normal when seeding the database without a server running
 // i.e. running `yarn seed` locally instead of using the admin UI within an active app
 // The app is not running to revalidate the pages and so the API routes are not available
@@ -63,30 +60,6 @@ export const seed = async (payload: Payload): Promise<void> => {
   // Explicitly convert IDs to strings
   demoAuthorID = String(demoAuthorID)
   demoUserID = String(demoUserID)
-
-  payload.logger.info(`*Seeding media...`)
-
-  const [image1Doc, image2Doc] = await Promise.all([
-    await payload.create({
-      collection: 'media',
-      filePath: path.resolve(__dirname, 'image-1.jpg'),
-      data: image1,
-    }),
-    await payload.create({
-      collection: 'media',
-      filePath: path.resolve(__dirname, 'image-2.jpg'),
-      data: image2,
-    }),
-  ])
-
-  let image1ID: string = String(image1Doc.id)
-  let image2ID: string = String(image2Doc.id)
-
-  if (payload.db.defaultIDType === 'text') {
-    image1ID = `"${image1Doc.id}"`
-    image2ID = `"${image2Doc.id}"`
-    demoAuthorID = `"${demoAuthorID}"`
-  }
 
   payload.logger.info('Seeded database successfully!')
 }
