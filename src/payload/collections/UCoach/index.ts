@@ -34,18 +34,7 @@ const UCoach: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
-      hooks: {
-        beforeValidate: [
-          ({ req, operation }) => {
-            if (operation === 'create') {
-              if (req.user) {
-                // undefined when seeding
-                return req.user.id
-              }
-            }
-          },
-        ],
-      },
+      required: false,
     },
     {
       name: 'name',

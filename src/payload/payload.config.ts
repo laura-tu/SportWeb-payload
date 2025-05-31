@@ -31,6 +31,12 @@ const generateTitle: GenerateTitle = () => {
   return 'My Website'
 }
 
+const getPublicSiteUrl = (): string[] | undefined => {
+  if (process.env.FRONTEND_URL) {
+    return process.env.FRONTEND_URL.split(',')
+  }
+}
+
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
 })
@@ -76,8 +82,8 @@ export default buildConfig({
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
-  cors: [process.env.FRONTEND_URL || ''].filter(Boolean),
-  csrf: [process.env.FRONTEND_URL || ''].filter(Boolean),
+  cors: getPublicSiteUrl() ?? '*',
+  csrf: getPublicSiteUrl() ?? [],
   endpoints: [
     // The seed endpoint is used to populate the database with some example data
     // You should delete this endpoint before deploying your site to production

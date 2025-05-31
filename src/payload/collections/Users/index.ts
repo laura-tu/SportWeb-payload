@@ -3,7 +3,7 @@ import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
 import { anyone } from '../../access/anyone'
 import adminsAndUser from './access/adminsAndUser'
-//import { checkRole } from './checkRole'
+import { checkRole } from './checkRole'
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
 import { forgotPassword, forgotPasswordSubject } from './hooks/email'
 import { loginAfterCreate } from './hooks/loginAfterCreate'
@@ -27,14 +27,16 @@ const Users: CollectionConfig = {
   },
   access: {
     read: adminsAndUser,
+    // read: req => checkUser(req, Permission.READ, 'id'),
     create: anyone,
     update: adminsAndUser,
     delete: admins,
     // only users with the "admin" role will be able to see or manage this collection in the Payload admin dashboard
-    //admin: ({ req: { user } }) => checkRole(['admin'], user),
+    admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   hooks: {
     afterChange: [loginAfterCreate],
+    //TODO:beforeChange hook to enforce allowed roles
   },
   /*hooks: {
     afterChange: [sendVerifiedEmail],
@@ -92,6 +94,26 @@ const Users: CollectionConfig = {
         read: () => true, // anyone can read a user's roles
         create: () => true, // Allow anyone to set a role during registration
         update: ({ req: { user } }) => user?.roles?.includes('admin') || false, // Only admins can update this field
+      },
+    },
+    {
+      name: 'avatar',
+      label: 'Profilová fotka',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+      admin: {
+        description: 'Nahraj obrázok, ktorý sa zobrazí ako profilová fotka.',
+      },
+      hooks: {
+        beforeValidate: [
+          ({ data }) => {
+            if (!data.avatar) {
+              data.avatar = '683ae5b3fec5504d68888ff7'
+            }
+            return data
+          },
+        ],
       },
     },
   ],

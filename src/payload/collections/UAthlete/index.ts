@@ -20,7 +20,7 @@ const UAthlete: CollectionConfig = {
   access: {
     read: anyone,
     create: anyone,
-    update: ({ req: { user } }) => checkRole(['user'], user), //because of FE
+    update: ({ req }) => checkRole(['user'], req.user) || admins({ req }), //because of FE
     delete: admins,
     // only users with the "admin" role will be able to see or manage this collection in the Payload admin dashboard
     //admin: ({ req: { user } }) => checkRole(['admin'], user),
