@@ -18,7 +18,8 @@ const UCoach: CollectionConfig = {
     group: 'Ľudia',
   },
   access: {
-    read: anyone,
+    read: ({ req }) =>
+      checkRole(['sportCoach'], req.user) || checkRole(['user'], req.user) || admins({ req }),
     create: anyone,
     update: ({ req }) => checkRole(['sportCoach'], req.user) || admins({ req }), //because of FE
     delete: admins,

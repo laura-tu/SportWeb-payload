@@ -54,6 +54,9 @@ export default buildConfig({
     },
     webpack: config => ({
       ...config,
+      cache: {
+        type: 'memory', // avoids filesystem cache and thus serialization
+      },
       resolve: {
         ...config.resolve,
         alias: {

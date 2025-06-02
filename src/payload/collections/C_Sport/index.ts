@@ -22,7 +22,6 @@ const CSport: CollectionConfig = {
     create: admins,
     update: admins,
     delete: admins,
-   // admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   fields: [
     {

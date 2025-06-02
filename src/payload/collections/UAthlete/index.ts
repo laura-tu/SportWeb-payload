@@ -18,12 +18,11 @@ const UAthlete: CollectionConfig = {
     group: 'Ľudia',
   },
   access: {
-    read: anyone,
+    read: ({ req }) =>
+      checkRole(['sportCoach'], req.user) || checkRole(['user'], req.user) || admins({ req }), //just users
     create: anyone,
     update: ({ req }) => checkRole(['user'], req.user) || admins({ req }), //because of FE
     delete: admins,
-    // only users with the "admin" role will be able to see or manage this collection in the Payload admin dashboard
-    //admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   fields: [
     {
