@@ -76,7 +76,21 @@ SportWeb-payload/
 ├── src/
 │ ├── server.ts          # Spustenie servera a inicializácia Payload
 │ ├── server.default.ts  # Záložný server pre prípad eject alebo vývoja
-│ └── payload/           # Konfigurácia Payload CMS, kolekcie, globály, hooky, seed ...
+│ └── payload/           # Konfigurácia Payload CMS, kolekcie, api, hooky, seed, atd.
+│       ├── access/
+│       ├── api/
+│       ├── collections/        
+│       ├── components/
+│       ├── endpoints/
+│       ├── fields/
+│       ├── hooks/
+│       ├── seed/              
+│       ├── translations/
+│       ├── utilities/         
+│       └── utils/              
+│       ├── payload.config.ts  
+│       ├── payload-types.ts
+│       └── constants.ts
 │
 ├── .env.example         # Ukážkový environment súbor
 ├── package.json         # Zoznam závislostí a skripty
