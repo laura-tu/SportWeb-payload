@@ -6,9 +6,7 @@ import { getEmailOptions } from './payload/utilities/sendPasswordEmail'
 // See `../eject.ts` for exact details on how this file is used
 // See `./README.md#eject` for more information
 
-dotenv.config({
-  path: path.resolve(__dirname, '../.env'),
-})
+dotenv.config()
 
 import express from 'express'
 import payload from 'payload'
