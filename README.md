@@ -74,8 +74,8 @@ SportWeb-payload/
 ├── public/              # Statické súbory dostupné cez URL
 │ ├── favicon.ico        
 ├── src/
-│ ├── server.ts          # Spustenie servera a inicializácia Payload
-│ ├── server.default.ts  # Záložný server pre prípad eject alebo vývoja
+│ ├── server.ts          # Spustenie servera a inicializácia Payloadu
+│ ├── server.default.ts  # Záložný server pre prípad eject alebo vývoj
 │ └── payload/           # Konfigurácia Payload CMS, kolekcie, api, hooky, seed, atd.
 │       ├── access/
 │       ├── api/
