@@ -9,8 +9,6 @@ import { getEmailOptions } from './payload/utilities/sendPasswordEmail'
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 })
-console.log('DATABASE_URI:', process.env.DATABASE_URI)
-
 
 import express from 'express'
 import payload from 'payload'
