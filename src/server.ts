@@ -9,6 +9,8 @@ import { getEmailOptions } from './payload/utilities/sendPasswordEmail'
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 })
+console.log('MONGODB_URI:', process.env.MONGODB_URI)
+
 
 import express from 'express'
 import payload from 'payload'
