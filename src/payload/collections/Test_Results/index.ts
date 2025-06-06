@@ -3,7 +3,6 @@ import { tCollection } from '../../utils/translations'
 import ChartComponent from '../../components/ChartComponent'
 import { admins } from '../../access/admins'
 import { anyone } from '../../access/anyone'
-//import { checkRole } from '../Users/checkRole'
 import { dateDisplayFormat } from '../../constants'
 
 const translate = tCollection('test_results')
@@ -19,8 +18,6 @@ const TestResults: CollectionConfig = {
     create: admins,
     update: admins,
     delete: admins,
-    //only users with the "admin" role will be able to see or manage this collection in the Payload admin dashboard
-    //admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   admin: {
     useAsTitle: 'testType',
@@ -90,7 +87,7 @@ const TestResults: CollectionConfig = {
           ],
         },
         {
-          label: translate('tabs.graph'),
+          label: translate('tabs.table'),
           fields: [
             {
               name: 'chart',

@@ -1,6 +1,5 @@
 import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
-import { checkRole } from '../Users/checkRole'
 import { anyone } from '../../access/anyone'
 import { tCollection } from '../../utils/translations'
 
@@ -18,11 +17,10 @@ const CSportClub: CollectionConfig = {
     group: 'Číselníky',
   },
   access: {
-    read:anyone,
+    read: anyone,
     create: admins,
     update: admins,
     delete: admins,
-    //admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   fields: [
     {
