@@ -3,7 +3,6 @@ import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
 import { anyone } from '../../access/anyone'
 import adminsAndUser from './access/adminsAndUser'
-import { checkRole } from './checkRole'
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
 import { forgotPassword, forgotPasswordSubject } from './hooks/email'
 import { loginAfterCreate } from './hooks/loginAfterCreate'
@@ -11,6 +10,7 @@ import { tCollection } from '../../utils/translations'
 //import { verify, verifySubject, checkVerification, sendVerifiedEmail } from './hooks/email'
 //import { checkUser } from '../../access/checkUser'
 //import { Permission } from '../../access/checkPermission'
+//import { updateOwnOrAdmin } from '../../access/updateOwnOrAdmin'
 
 const translate = tCollection('users')
 
@@ -27,21 +27,13 @@ const Users: CollectionConfig = {
   },
   access: {
     read: adminsAndUser,
-    // read: req => checkUser(req, Permission.READ, 'id'),
     create: anyone,
     update: adminsAndUser,
     delete: admins,
-    // only users with the "admin" role will be able to see or manage this collection in the Payload admin dashboard
-    admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   hooks: {
     afterChange: [loginAfterCreate],
-    //TODO:beforeChange hook to enforce allowed roles
   },
-  /*hooks: {
-    afterChange: [sendVerifiedEmail],
-    beforeChange: [checkVerification],
-  },*/
   auth: {
     /*verify: {
       generateEmailHTML: verify,
@@ -105,7 +97,7 @@ const Users: CollectionConfig = {
       admin: {
         description: 'Nahraj obrázok, ktorý sa zobrazí ako profilová fotka.',
       },
-      hooks: {
+      /*hooks: {
         beforeValidate: [
           ({ data }) => {
             if (!data.avatar) {
@@ -114,7 +106,7 @@ const Users: CollectionConfig = {
             return data
           },
         ],
-      },
+      },*/
     },
   ],
   timestamps: true,

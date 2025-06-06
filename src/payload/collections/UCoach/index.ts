@@ -45,7 +45,7 @@ const UCoach: CollectionConfig = {
         position: 'sidebar',
         // readOnly: true, // Make it read-only if it should be auto-filled
       },
-      hooks: {
+      /*hooks: {
         beforeChange: [
           async ({ data, req, operation }) => {
             if (operation === 'create' || operation === 'update') {
@@ -63,7 +63,7 @@ const UCoach: CollectionConfig = {
             }
           },
         ],
-      },
+      },*/
     },
     {
       name: 'sport',
